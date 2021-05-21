@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Coursera/fpp-in-scala - sundicide</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Coursera/fpp-in-scala";
+    var mkdocs_page_input_path = "scala/fpp-in-scala.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> sundicide</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Scala</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Coursera/fpp-in-scala</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#week1">Week1</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-11-programming-paradigms">Lecture 1.1 - Programming Paradigms</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#imperative-programming">Imperative Programming</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#what-is-a-theory">What is a theory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#consequences-for-programming">Consequences for Programming</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#functional-programming">Functional Programming</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#functional-programming-language">Functional Programming Language</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#some-functional-programming-languages">Some functional programming languages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#why-functional-programming">Why Functional Programming?</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#my-summary">my summary</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#substitution-model">substitution model</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#evaluation-stratigies">Evaluation Stratigies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#value-definitions">Value Definitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nested-functions">Nested Functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lexical-scoping">Lexical Scoping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tail-recursion">Tail Recursion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week2">Week2</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#higher-order-functions">Higher order functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#anonymous-function">Anonymous Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#currying">Currying</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-finding-fixed-points">Example: Finding Fixed Points</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#functions-as-return-values">functions as return values</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions-and-data">Functions and Data</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#objects">Objects</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-fun-with-rationals">More Fun With Rationals</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#self-reference">Self Reference</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#preconditions">Preconditions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#assertions">Assertions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#constructors">Constructors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#evaluation-and-operators">Evaluation and Operators</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#operators">Operators</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#precedence-rules">Precedence Rules</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../fpd-in-scala/">Coursera/fpd-in-scala</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">sundicide</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Scala &raquo;</li>
+        
+      
+    
+    <li>Coursera/fpp-in-scala</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="fpp-in-scala">fpp-in-scala</h1>
+<h2 id="week1">Week1</h2>
+<h3 id="lecture-11-programming-paradigms">Lecture 1.1 - Programming Paradigms</h3>
+<p>functional Programming은 paradigm이다. classical imperative paradimg(Java or C)과 약간 다른.
+scala에서는 이 2개의 paradigm을 합칠 수도 있다. 이는 다른 언어에서의 migration을 쉽게 해준다.</p>
+<p>In science, a <code>paradigm</code> describes distinct concepts or thought patterns in some scientific discipline.</p>
+<p>Main Programming Paradigms:
+- imperative programming
+- functional programming
+- logic programming</p>
+<p>object-oriented programming도 paradigm이라고 하는 사람들도 있지만 자신의 생각으로는 위 3개의 교차점에 있다고 생각한다.</p>
+<h4 id="imperative-programming">Imperative Programming</h4>
+<ul>
+<li>modifying mutable variables</li>
+<li>using assignments</li>
+<li>and control structures such as if-then-else, loops, break, continue, return</li>
+</ul>
+<p>Von Neumann computer의 sequence를 이해하는 것은 imperative program을 이해하는 most common informal way이다.</p>
+<blockquote>
+<p>Processor &lt;------BUS ------&gt; Memory</p>
+</blockquote>
+<p>Problem: Scaling up. How can we avoid conceptualizing programs word by word?</p>
+<p>high-level abstractions(collections, polynomials, geomtric shapes, strings, documents..)를 정의하는 테크닉이 필요하다.</p>
+<p>Ideally: Develop theories of collections, shapes, strings, ...</p>
+<h4 id="what-is-a-theory">What is a theory</h4>
+<p>A theory consist of
+- one or more data types
+- operations on these types
+- laws that describe the relationships between values and operations</p>
+<p>보통 theory는 <code>mutations</code>를 describe하지 않는다!</p>
+<p>mutation: identity는 유지하면서 something을 change하는 것이다.</p>
+<h5 id="theories-without-mutations">Theories without mutations</h5>
+<p>theory of polynomials</p>
+<blockquote>
+<p>(a<em>x + b) + (c</em>x + d) = (a+c)*x + (b+d)</p>
+</blockquote>
+<p>theory of strings</p>
+<blockquote>
+<p>(a ++ b) ++ c = a ++ (b ++ c)</p>
+</blockquote>
+<h4 id="consequences-for-programming">Consequences for Programming</h4>
+<p>mathematical theroies를 따르면서 high-level concepts 구현을 하려면 mutation은 없어야 한다.
+- theroies do not admit it
+- mutation은 theories의 useful laws를 destoy 할 수 있다.</p>
+<p>그러므로
+- concentrate on defining theories for operators expressed as functions
+- avoid mutations
+- have powerful ways to abstract and compose functions</p>
+<p>start of function programming means avoid mutations</p>
+<h4 id="functional-programming">Functional Programming</h4>
+<ul>
+<li>In a restricted sense, FP means programming without mutable variables, assignments, loops, and other imperative control structures</li>
+<li>In a wider sense, FP meas focusing on the functions</li>
+<li>In particular, functions can be valuses that are produced, consumed, and composed</li>
+<li>All this becomes easier in a functional language</li>
+</ul>
+<h4 id="functional-programming-language">Functional Programming Language</h4>
+<ul>
+<li>In a restricted sense, a functional programming language is one which does not have mutable variables, assignments, or imperative control structures.</li>
+<li>In a wider sense, a functional programming language enables the construction of elegant programs that focus on functions.</li>
+<li>In particular, functions in a FP language are first-class citizens. This means<ul>
+<li>they can be defined anywhere, including inside other functions</li>
+<li>like any other value, they can be passed as parameters to functions and returned as results</li>
+<li>as for other values, there exists a set operators to compose functions</li>
+</ul>
+</li>
+</ul>
+<h4 id="some-functional-programming-languages">Some functional programming languages</h4>
+<p>In the restricted sense:
+- Pure Lisp, XSLT, XPath, XQuery, FP
+- Haskell (without I/O Monad or UnsafePerformIO)</p>
+<p>In the wider sense:
+- Lisp, Scheme, Racket, Clojure ▶ SML, Ocaml, F#
+- Haskell (full language)
+- Scala
+- Smalltalk, Ruby (!)</p>
+<h4 id="why-functional-programming">Why Functional Programming?</h4>
+<p>Functional Programming is becoming increasingly popular because it offers the following benfits.
+- simpler reasoning principles
+- better modularity
+- good for exploiting parallelism for multicore and cloud computing.</p>
+<h4 id="my-summary">my summary</h4>
+<p>우리는 수학을 배우면서 mutable variables를 배운 적이 없다.</p>
+<p>1 + 1 = 2이고 a + b = 3 이라면 그냥 3인 것이다.
+오늘은 a + b = 3 이었는데 내일은 a + b = 4일 순 없었다.
+(ax^2 + bx + c 는 여러 값이 될 수 있겠지만)</p>
+<p>하지만 imperative programming에서는 자연스러운 개념이다.
+int a = 1;
+int b = 2;
+a + b = 3;</p>
+<p>a = 4;
+a + b = 6;</p>
+<p>왜 수학적인 원칙을 꺼내 들었냐?
+module화 때문이다.</p>
+<p>프로그램이 복잡해지면서 모듈화는 필수이다.
+잘 된 모듈화란 무엇일까? 항상 동일한 결과를 리턴하는 모듈일 것이다.</p>
+<p>map 함수를 생각해보면 어느 타입에 상관없이
+List[U]를 리턴한다.</p>
+<p>이런 수학적 원칙들은 mutable variables를 인정하지 않는다. 그렇기에 functional programming language에 잘 맞는다.</p>
+<p>fp는 이런 모호함을 제거함으로서 원칙을 보다 잘 구현하고 모듈화 하기 좋으며 multicore와 cloud computing 환경에서 병렬처리를 잘 할 수 있게 해준다.</p>
+<hr />
+
+<h2 id="substitution-model">substitution model</h2>
+<ul>
+<li>함수의 argument를 왼쪽부터 모두 평가</li>
+<li>함수의 오른쪽부터 교체</li>
+</ul>
+<p>-&gt; 모든 Expression에 사용 가능 , No side effect</p>
+<p>foundation of functional programming인 람다 calculus에 formalized 되어있다.</p>
+<p>모든 Expr이 reduce to a value? (X)</p>
+<p>아래와 같은 예가 있다.</p>
+<pre><code class="scala">def loop: Int = loop
+</code></pre>
+
+<h3 id="evaluation-stratigies">Evaluation Stratigies</h3>
+<p>CBV(Call By Value), CBN(Call By Name)
+- CBV: 모든 args는 한 번만 평가한다는 장점
+- CBN: 호출 될 때까지 not evaluted된다는 장점</p>
+<p>만약 CBV가 종료된다면 CBN도 종료된다? (O)
+반대로 CBN이 종료된다면 CBV도 종료된다? (X)</p>
+<p>scala에서 CBN을 쓰는 방법은 parameter에 <code>=&gt;</code>를 붙이면 된다.</p>
+<pre><code class="scala">def myFunc(a:=&gt; Int) = a
+</code></pre>
+
+<h3 id="value-definitions">Value Definitions</h3>
+<pre><code class="scala">val x = 2
+val y = square(x) // 바로 평가된다.
+
+
+def loop: Boolean = loop
+
+def x = loop // (O) def는 호출될때 평가된다.
+val x = loop // (X) Error
+
+def and(x: Boolean, y: Boolean) =
+  if (x) y else false
+
+and(false, loop) // (X) Error
+
+def and2(x: Boolean, y:=&gt; Boolean) =
+  if (x) y else false
+and2(false, loop) // false
+</code></pre>
+
+<h3 id="nested-functions">Nested Functions</h3>
+<p>small func로 분리하는 것. good FP styles
+sqrtIter, imporve 같은 함수들은 외부에 공개(direct 호출) 하고 싶지 않을 수 있다.</p>
+<p>이러한 보조 함수들을 내부 함수로 둠으로써 name-space pollution을 방지할 수 있다.</p>
+<pre><code class="scala">def sqrt(x: Double) = {
+  def improve
+  def sqrtIter
+}
+</code></pre>
+
+<h3 id="lexical-scoping">Lexical Scoping</h3>
+<p>outer block에 있는 definitions는 inside block에서 visible하다.</p>
+<p>보통 문장 라인 끝 <code>;</code>는 optional이다.
+다만 한 문장에 여러 expr을 표현할 때는 필수 이다.</p>
+<pre><code class="scala">val y = x + 1; y + y
+</code></pre>
+
+<h3 id="tail-recursion">Tail Recursion</h3>
+<p>calls itself as its last action.
+the function's stack frame can be reused
+(one stack frame이 필요하며, tail calls 라고 함)</p>
+<p><code>@tailrec</code> annotation을 함수 위에 추가하면 해당 함수가 tail recur 하지 않을 시 오류가 발생한다.</p>
+<p>아래의 factorial 함수는 tailrc 함수가 아니며 gcd는 tailrec 함수이다.</p>
+<pre><code class="scala">def gcd(a: Int, b: Int): Int =
+  if (b == 0) a else gcd(b, a % b)
+
+def factorial(n: Int): Int =
+  if (n == 0) 1 else n * factorial(n - 1)
+</code></pre>
+
+<p>그 차이는 gcd는 스텝을 진행을 계속 하더라도 본인 호출만 계속 하게 되지만 factorial 같은 경우에는 좌측이 계속 늘어난다</p>
+<blockquote>
+<p>4 * factorial(3)</p>
+</blockquote>
+<p>이를 tail recursive 하게 변경하면 아래와 같다.</p>
+<pre><code class="scala">def factorial(n: Int): Int = {
+  @tailrec
+  def loop(acc: Int, n: Int): Int =
+    if (n == 0) acc
+    else loop(acc * n, n -1)
+  loop(1, n)
+}
+</code></pre>
+
+<p>Donal Knuth said premature optimization is the source of the evil</p>
+<h2 id="week2">Week2</h2>
+<h3 id="higher-order-functions">Higher order functions</h3>
+<p>pass functions as arguments and retun them as results.</p>
+<p>functional languages treat functions as first-class values.
+= like any other value, a function can be passed as a parameter and returned as a result.</p>
+<p>provides a flexible way to compose program.</p>
+<h4 id="anonymous-function">Anonymous Function</h4>
+<p>함수를 parameter로 전달하다보면 many small function을 만들게 된다. 그렇게 되면 각각의 naming을 정하는 것은 어렵게 된다.
+=&gt; anonymous function을 사용한다.</p>
+<pre><code class="scala">def str = &quot;abc&quot;; println(str)
+
+println(&quot;abc&quot;)
+</code></pre>
+
+<p>위에는 str 변수를 정의해서 호출했고 아래는 정의 없이 사용 했다.
+이것이 가능한 이유는 뭘까?
+=&gt; str은 literals 이기 때문이다.</p>
+<p>마찬가지로 이름 없이 함수를 쓰면 function literals가 된다.
+= anonymous functions</p>
+<pre><code class="scala">// cube anonymous func
+(x: Int) =&gt; x * x * x
+</code></pre>
+
+<p><code>(x: Int)</code>는 parameter
+<code>x * x  * x</code>는 body</p>
+<pre><code class="scala">def sum(f: Int =&gt; Int, a: Int, b: Int): Int = {
+  @tailrec
+  def loop(a: Int, acc: Int): Int = {
+    if (a &gt; b) acc
+    else loop(a + 1, f(a) + acc)
+  }
+  loop(a, 0)
+}
+def sumInts(a: Int, b: Int) = sum(x =&gt; x, a, b)
+
+def sumCubes(a: Int, b: Int) = sum(x =&gt; x * x * x, a, b)
+</code></pre>
+
+<h3 id="currying">Currying</h3>
+<p>아래 함수를 더 짧게 할 수는 없을까?</p>
+<pre><code class="scala">def sumInts(a: Int, b: Int) = sum(x =&gt; x, a, b)
+</code></pre>
+
+<pre><code class="scala">def sum()
+</code></pre>
+
+<pre><code class="scala">def sum(f: Int =&gt; Int)(a: Int, b: Int): Int =
+  if (a &gt; b) 0 else f(a) + sum(f)(a + 1, b)
+
+def product(f: Int =&gt; Int)(a: Int, b: Int): Int =
+  if (a &gt; b) 1
+  else f(a) * product(f)(a + 1, b)
+</code></pre>
+
+<p>위와 같은 스타일의 definition과 function을 currying이라고 부른다. Haskell Brooks Curry의 이름을 딴 네이밍이다.
+Idea는 그 보다 전인 Schonfinkel과 Frege에 의해서 나왔지만 currying이란 네임으로 굳어졌다.</p>
+<h3 id="example-finding-fixed-points">Example: Finding Fixed Points</h3>
+<p>A number x is called a fixed point(고정 점) of a function f if</p>
+<blockquote>
+<p>f(x) = x</p>
+</blockquote>
+<p>예로 f: x =&gt; 1 + x/2 라 할 때 fixed point는 2이다.
+f(2) = 2이므로</p>
+<p>몇몇 함수들은 f를 반복적으로 수행함으로서 fixed point를 찾을 수 있다.</p>
+<blockquote>
+<p>x, f(x), f(f(x)), f(f(f(x))), ...</p>
+</blockquote>
+<p>initial estimate로 시작해서 f를 반복적으로 수행하다보면 더 이상 변하지 않는 값 혹은 변경이 충분히 적어졌을 때의 값을 fixed point라 부를 수 있다.</p>
+<pre><code class="scala">import math.abs
+
+val tolerance = 0.0001
+def isCloseEnough(x: Double, y: Double): Boolean =
+  abs((x - y) / x) / x &lt; tolerance
+
+def fixedPoint(f: Double =&gt; Double)(firstGuess: Double) = {
+  @tailrec
+  def iterate(guess: Double): Double = {
+    val next = f(guess)
+    if (isCloseEnough(guess, next)) next
+    else iterate(next)
+  }
+  iterate(firstGuess)
+}
+fixedPoint(x =&gt; 1 + x/2)(1) // 1.9975
+
+def sqrt(x: Double) = fixedPoint(y =&gt; x / y)(1)
+sqrt(2) // 무한 loop
+</code></pre>
+
+<p>위의 예에서 sqrt(2)를 수행하면 무한 loop가 발생한다.
+1과 2 를 계속 반복한다
+이를 해결 하기 위해서는 첫 번째 계산 값과 두 번째 계산 값의 평균을 구하면 된다.</p>
+<pre><code class="scala">def sqrt(x: Double) =
+  fixedPoint(y =&gt; (y + x / y) / 2)(1)
+</code></pre>
+
+<h4 id="functions-as-return-values">functions as return values</h4>
+<p>위의 예제에서 평균을 통해 안정화시키는 기술은 추상화 될 수 있다.</p>
+<pre><code class="scala">def averageDamp(f: Double =&gt; Double)(x: Double) =
+  (x + f(x)) / 2
+def sqrt3(x: Double) =
+  fixedPoint(averageDamp(y =&gt; x / y))(1)
+</code></pre>
+
+<p>Higher Order Function이 항상 옳은 것은 아니며 적절 할 때 사용해야 한다.</p>
+<h3 id="functions-and-data">Functions and Data</h3>
+<h4 id="classes">Classes</h4>
+<pre><code class="scala">class Rational(x: Int, y: Int):
+  def numer = x
+  def denom = y
+</code></pre>
+
+<p>위 정의는 two entities를 생성한다.
+- Rational 이라는 이름의 new type
+- 이 type의 element를 만들기 위한 Rational constructo</p>
+<p>스칼라는 types과 value의 names를 <code>different namespace</code>에 보관하기 때문에 충돌을 걱정할 필요 없다.</p>
+<h4 id="objects">Objects</h4>
+<p>elements of a class type을 objects라고 부른다.
+class 의 생성자를 calling 함으로서 object를 만들 수 있다.</p>
+<pre><code class="scala">Rational(1, 2)
+</code></pre>
+
+<p>아래와 같이 class내 member에 접근 가능하다</p>
+<pre><code class="scala">val x = Rational(1 ,2)
+x.numer
+x.denom
+</code></pre>
+
+<pre><code class="scala">object rationals {
+  val x = new Rational(1, 3)
+  val y = new Rational(5, 7)
+  val z = new Rational(3, 2)
+
+  x.add(y).mul(z)
+}
+class Rational(x: Int, y: Int) {
+  def numer = x
+  def denom = y
+
+  def add(r: Rational) =
+    new Rational(numer * r.denom + r.numer * denom,
+      denom * r.denom)
+
+  def mul(r: Rational) =
+    new Rational(numer * r.numer,
+      denom * r.denom)
+
+  def neg = new Rational(-numer, denom)
+
+  def sub(r: Rational) = add(r.neg)
+
+  override def toString = s&quot;$numer/$denom&quot;
+}
+
+</code></pre>
+
+<h3 id="more-fun-with-rationals">More Fun With Rationals</h3>
+<p>Client's view에서는 내부가 어떻게 동작하던지 동일하게 보인다.</p>
+<p>without affecting client를 하면서 다른 구현을 선택하는 것을 <code>data abstraction</code>이라고 한다.
+S/E에서의 cornerstone이다.</p>
+<h4 id="self-reference">Self Reference</h4>
+<p>inside of a class, <code>this</code>는 현재 실행 중인 method내에서의 object를 의미한다</p>
+<h4 id="preconditions">Preconditions</h4>
+<p><code>require</code>로 class에 조건을 추가할 수 있다.
+조건에 맞지 않으면 IllegalArgumentException이 발생하며 추가한 에러 메세지가 출력된다.</p>
+<h4 id="assertions">Assertions</h4>
+<p>require와 비슷한 의미이다.
+require와 동일하게 condtion과 optional message string을 받는다.</p>
+<pre><code class="scala">val x = sqrt(y)
+assert(x &gt;= 0)
+</code></pre>
+
+<p>fail일 경우 assert는 require와 달리 AssertionError를 발생한다.</p>
+<ul>
+<li>require는 함수 호출자에게 precondition을 강요할 때 쓰인다</li>
+<li>assert는 함수 자신이 체크 할 때 사용한다.</li>
+</ul>
+<h4 id="constructors">Constructors</h4>
+<p>모든 class는 primary constructor(기본 생성자)가 암시적으로 있다.
+- class의 모든 paramters를 받고
+- class body의 모든 statement를 실행한다.</p>
+<p>Java 같이 여러 생성자를 갖는 것도 가능하다.</p>
+<pre><code class="scala">object rationals {
+  val x = new Rational(1, 3)
+  val y = new Rational(5, 7)
+  val z = new Rational(3, 2)
+
+  x.add(y).mul(z)
+  y.add(y)
+  x.less(y)
+  x.max(y)
+  new Rational(2)
+}
+class Rational(x: Int, y: Int) {
+  require(y != 0, &quot;denominator must be nonezero&quot;)
+
+  def this(x: Int) = this(x, 1) // 여기에서의 this는 constructor 의미로 쓰인다.
+
+  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  private val g = gcd(x, y) // val로 선언했기에 바로 평가되서 다음 부턴 계산을 안하고 재사용한다.
+  def numer = x / g
+//    def numer = x / gcd(x,y) // 만약 이와 같이 선언 하면 매번 gcd를 계산해야 한다. 계산 리소스가 크고 가끔 호출될 때 사용하면 좋다.
+  def denom = y / g
+
+  def less(that: Rational) = numer * that.denom &lt; that.numer * denom
+  def max(that: Rational) = if (this.less(that)) that else this
+
+  def add(r: Rational) =
+    new Rational(numer * r.denom + r.numer * denom,
+      denom * r.denom)
+
+  def mul(r: Rational) =
+    new Rational(numer * r.numer,
+      denom * r.denom)
+
+  def neg = new Rational(-numer, denom)
+
+  def sub(r: Rational) = add(r.neg)
+
+  override def toString = s&quot;$numer/$denom&quot;
+}
+
+</code></pre>
+
+<hr />
+
+<h3 id="evaluation-and-operators">Evaluation and Operators</h3>
+<h4 id="operators">Operators</h4>
+<h5 id="infix-notation">Infix Notation</h5>
+<p>parameter를 갖는 모든 메소드는 infix operaotr처럼 사용할 수 있다.</p>
+<p>r add s           r.add(s)
+r less s          r.less(s)
+r max s           r.max(s)</p>
+<h5 id="relaxed-identifiers">Relaxed Identifiers</h5>
+<p>operaotr는 identifier로 사용될 수 있다.
+- 영문자: 문자로 시작하고, 뒤에는 문자 혹은 숫자가 올 수 있다.
+- Symbolic: operator symbol로 시작해서, 다른 심볼이 뒤에 올 수 있다.
+- <code>_</code> 문자는 문자로 카운트 된다
+- 영문자 identifiers는 underscore로 끝날 수 있고 뒤에 다른 operator symbols가 붙을 수 있다.
+* 만약 끝이 symbol들로 끝나면 뒤에 타입을 위한 <code>:</code> 과 한 칸 띄워야 한다.</p>
+<p>examples
+- x1
+- *
+- +?%&amp;
+- vector_++
+- counter_=</p>
+<p>-a 처럼 빼기가 아니라 마이너스 operator를 추가하고 싶다면 아래와 같이 해야 한다.
+(<code>unary_</code> 가 앞에 붙어야 하고 <code>:</code>과 한칸 띄워 써야 한다.)</p>
+<pre><code class="scala">def unary_- : Rational = new Rational(-numer, denom)
+</code></pre>
+
+<h4 id="precedence-rules">Precedence Rules</h4>
+<p>연산자 우선순위.
+첫 번째 문자에 따라 결정된다.
+Java혹은 C와 차이 없다.</p>
+<p>1번이 가장 낮은 순위이다.</p>
+<ol>
+<li>(all letters)</li>
+<li>|</li>
+<li>^</li>
+<li>&amp;</li>
+<li>&lt; &gt;</li>
+<li>= !</li>
+<li>:</li>
+<li>
+<ul>
+<li>-</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>/ %</li>
+</ul>
+</li>
+<li>(all other special values)</li>
+</ol>
+<pre><code class="scala">class Rational(x: Int, y: Int) {
+  require(y != 0, &quot;denominator must be nonezero&quot;)
+
+  def this(x: Int) = this(x, 1) // 여기에서의 this는 constructor 의미로 쓰인다.
+
+  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  private val g = gcd(x, y) // val로 선언했기에 바로 평가되서 다음 부턴 계산을 안하고 재사용한다.
+  def numer = x / g
+//    def numer = x / gcd(x,y) // 만약 이와 같이 선언 하면 매번 gcd를 계산해야 한다. 계산 리소스가 크고 가끔 호출될 때 사용하면 좋다.
+  def denom = y / g
+
+//    def less(that: Rational) = numer * that.denom &lt; that.numer * denom
+  def &lt; (that: Rational) = numer * that.denom &lt; that.numer * denom
+  def max(that: Rational) = if (this.&lt;(that)) that else this
+
+  def +(r: Rational) =
+    new Rational(numer * r.denom + r.numer * denom,
+      denom * r.denom)
+
+  def mul(r: Rational) =
+    new Rational(numer * r.numer,
+      denom * r.denom)
+
+  def unary_- : Rational = new Rational(-numer, denom)
+
+  def -(that: Rational) = this + -that
+
+  override def toString = s&quot;$numer/$denom&quot;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fpd-in-scala/" class="btn btn-neutral float-right" title="Coursera/fpd-in-scala">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../fpd-in-scala/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

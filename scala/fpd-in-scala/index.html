@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Coursera/fpd-in-scala - sundicide</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Coursera/fpd-in-scala";
+    var mkdocs_page_input_path = "scala/fpd-in-scala.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> sundicide</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Scala</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../fpp-in-scala/">Coursera/fpp-in-scala</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Coursera/fpd-in-scala</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#week1-1-recap-functions-and-pattern-matching">Week1-1: Recap: Functions and Pattern Matching</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#partial-function">Partial Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#excercise1">Excercise1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week1-2-recap-collections">Week1-2: Recap: Collections</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week3-1-type-directed-programming">Week3-1: Type-Directed Programming</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#motivating-example">Motivating Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#refactoring-with-ordering">Refactoring With Ordering</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reducing-boilerplate">Reducing Boilerplate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implicit-parameters">Implicit Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#candidates-for-implicit-parameters">Candidates for Implicit Parameters</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#implicit-definition">implicit Definition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#implicit-search-scope">Implicit Search Scope</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#implicit-search-process">Implicit Search Process</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#context-bounds">Context Bounds</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implicit-query">Implicit Query</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week3-2-type-classes">Week3-2: Type Classes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#retroactive-extension">Retroactive Extension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#laws">Laws</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-of-type-class-ring">Example of Type Class: Ring</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#summary_1">Summary</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week3-3-conditional-implicit-definitions">Week3-3: Conditional Implicit Definitions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recursive-implicit-definitions">Recursive Implicit Definitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-sort-by-multiple-criteria">Example: Sort by Multiple Criteria</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#summary_2">Summary</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">sundicide</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Scala &raquo;</li>
+        
+      
+    
+    <li>Coursera/fpd-in-scala</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="fdd-in-scala">fdd-in-scala</h1>
+<h2 id="week1-1-recap-functions-and-pattern-matching">Week1-1: Recap: Functions and Pattern Matching</h2>
+<p>Pattern Matching의 예</p>
+<pre><code class="scala">  def show(json: JSON): String = json match {
+    case JSeq(elems) =&gt;
+      &quot;[&quot; + (elems map show mkString &quot;, &quot;) + &quot;]&quot;
+    case JObj(bindings) =&gt;
+      val assocs = bindings map {
+        case (key, value) =&gt; &quot;\&quot;&quot; + key + &quot;\&quot;: &quot; + show(value)
+      }
+      &quot;{&quot; + (assocs mkString &quot;, &quot;) + &quot;}&quot;
+    case JNum(num) =&gt; num.toString
+    case JStr(str) =&gt; &quot;\&quot;&quot; + str + &quot;\&quot;&quot;
+    case JBool(b) =&gt; b.toString
+    case JNull =&gt; &quot;null&quot;
+  }
+</code></pre>
+
+<p>scala에서 모든 concrete type은 class or trait 이다.
+function도 예외가 아니다.</p>
+<p>JBinding =&gt; String
+은
+scala.Function1[JBinding, String]
+의 축약형이다.</p>
+<p>scala.Function1은 trait이고 JBinding과 String은 type arguments이다.</p>
+<h3 id="partial-function">Partial Function</h3>
+<p>another subtype of function, special type이다.
+function과 동일하게 apply를 가지면서 <code>isDefinedAt</code>을 추가로 갖는다.</p>
+<pre><code class="scala">trait PartialFunction[-A, +R] extends Function1[-A, +R] {
+  def apply(x: A): R
+  def isDefinedAt(x: A): Boolean
+}
+</code></pre>
+
+<pre><code class="scala">val f1: String =&gt; String = { case &quot;ping&quot; =&gt; &quot;pong&quot;}
+f1(&quot;ping&quot;) // pong
+f1(&quot;abc&quot;) // MatchError!!!
+
+val f: PartialFunction[String, String] = { case &quot;ping&quot; =&gt; &quot;pong&quot; }
+
+f.isDefinedAt(&quot;ping&quot;) // true
+f.isDefinedAt(&quot;pong&quot;) // false
+</code></pre>
+
+<p>만약 PartialFunction type이 기대된다면 Scala Compiler는 아래와 같이 확장한다.</p>
+<pre><code class="scala">{ case &quot;ping&quot; =&gt; &quot;pong&quot; }
+</code></pre>
+
+<p>as follows:</p>
+<pre><code class="scala">new PartialFunction[String, String] {
+  def apply(x: String) = x match {
+    case ”ping” =&gt; ”pong”
+  }
+  def isDefinedAt(x: String) = x match {
+    case ”ping” =&gt; true
+    case _ =&gt; false
+  }
+}
+</code></pre>
+
+<h3 id="excercise1">Excercise1</h3>
+<pre><code class="scala">val f: PartialFunction[List[Int], String] = {
+  case Nil =&gt; ”one”
+  case x :: y :: rest =&gt; ”two”
+}
+
+f.isDefinedAt(List(1, 2, 3)) // true
+</code></pre>
+
+<pre><code class="scala">val g: PartialFunction[List[Int], String] = {
+  case Nil =&gt; ”one”
+  case x :: rest =&gt;
+    rest match {
+      case Nil =&gt; ”two”
+    }
+}
+
+g.isDefinedAt(List(1,2,3)) // ture
+g(List(1,2,3)) // Match Error!!!
+</code></pre>
+
+<p>위에서 보듯이 <code>isDefinedAt</code>은 outmost matching block만 검증해준다. 그렇기 때문에 g에서는 true가 리턴 되는 것이다.
+실제로 사용을 해보면 <code>case Nil</code> 밖에 case가 없기 때문에 에러가 발생한다.</p>
+<hr />
+
+<h2 id="week1-2-recap-collections">Week1-2: Recap: Collections</h2>
+<p>All collection types share a common set of general methods.</p>
+<p>Core Methods:
+- map
+- flatMap
+- filter</p>
+<p>and also
+- foldLeft
+- foldRight</p>
+<pre><code class="scala">abstract class List[+T] {
+  def map[U](f: T =&gt; U): List[U] = this match {
+    case x :: xs =&gt; f(x) :: xs.map(f)
+    case Nil =&gt; Nil
+  }
+}
+</code></pre>
+
+<pre><code class="scala">abstract class List[+T] {
+  def flatMap[U](f: T =&gt; List[U]): List[U] = this match {
+    case x :: xs =&gt; f(x) ++ xs.flatMap(f)
+    case Nil =&gt; Nil
+  }
+}
+</code></pre>
+
+<p>map과의 다른점
+1. map과 달리 f가 List[U]를 리턴한다.
+2. ++로 List를 concat한다.(List끼리의 concat이므로)</p>
+<hr />
+
+<h2 id="week3-1-type-directed-programming">Week3-1: Type-Directed Programming</h2>
+<p>지금까지 봤듯이 compiler는 values로 부터 types을 유추할 수 있다.</p>
+<pre><code class="scala">val x = 12
+</code></pre>
+
+<p>compiler는 x를 Int로 유추한다. 왜냐하면 값이 12이므로
+아래와 같이 복잡한 표현에서도 이는 적용된다.</p>
+<pre><code class="scala">val y = x + 3
+</code></pre>
+
+<p>compiler는 y 또한 Int로 유추한다.</p>
+<p><br />
+이번에는 반대로 compiler가 types로 부터 values를 유추하는 과정을 볼 것이다.
+왜 이것이 유용하냐? 확실한 하나는 compiler가 value를 찾아서 줄 수 있기 때문이다.</p>
+<p>이번 레슨의 나머지는 이런 메카니즘의 motivation을 소개하고 다음 번 레슨은 how to use it을 설명할 것이다.</p>
+<h3 id="motivating-example">Motivating Example</h3>
+<p>parameter로 List[Int]를 받아서 정렬한 결과를 List[Int]로 리턴하는 함수를 생각해보자.</p>
+<pre><code class="scala">def sort(xs: List[Int]): List[Int] = {
+  ...
+  ... if (x &lt; y) ...
+  ...
+}
+</code></pre>
+
+<p>상세 코드는 여기에서 필요가 없기에 생략했다. 위 코드는 Int에 대해서만 적용 가능하므로 general하게 모든 타입에 대해서도 동작하게 하고 싶다.
+이에 대한 straightforward approach는 polymorphic type을 사용하는 것이다.</p>
+<pre><code class="scala">def sort[A](xs: List[A]): List[A] = ...
+</code></pre>
+
+<p>하지만 이것만으로는 부족하다. 왜냐하면 각 type별로 compare를 다르게 해야 하기 때문이다.
+그래서 이번엔 각 compare 함수를 parameter로 받도록 해보자.</p>
+<pre><code class="scala">def sort[A](xs: List[A])(lessThan: (A, A) =&gt; Boolean): List[A] = {
+  ...
+  ... if (lessThan(x, y)) ...
+  ...
+}
+</code></pre>
+
+<p>그렇게 되면 아래와 같이 가능하다'</p>
+<pre><code class="scala">val xs = List(-5, 6, 3, 2, 7)
+
+val strings = List(&quot;apple&quot;, &quot;pear&quot;, &quot;orange&quot;, &quot;pineapple&quot;)
+
+sort(xs)((x, y) =&gt; x &lt; y)
+
+sort(strings)((s1, s2) =&gt; s1.compareTo(s2) &lt; 0)
+</code></pre>
+
+<h3 id="refactoring-with-ordering">Refactoring With Ordering</h3>
+<p>scala는 standard library 에서 comparing 하는 함수를 기본으로 제공한다.</p>
+<pre><code class="scala">package scala.math
+
+trait Ordering[A] {
+  def compare(a1: A, a2: A): Int
+  def lt(a1: A, a2: A): Boolean = compare(a1, a2) &lt;= 0
+  ...
+}
+</code></pre>
+
+<p>compare 함수는 2개의 parameter를 받아서 첫 번째 값이 클 경우 양수, 작을 경우 음수, 동일한 경우 0을 리턴한다.</p>
+<p>이를 사용하면 아래와 같이 변경 가능하다.</p>
+<pre><code class="scala">def sort[A](xs: List[A])(ord: Ordering[A]): List[A] = {
+  ...
+  ... if (ord.lt(x, y)) ...
+  ...
+}
+</code></pre>
+
+<pre><code class="scala">import scala.math.Ordering
+
+sort(xs)(Ordering.Int)
+sort(strings)(Ordering.String)
+</code></pre>
+
+<p>여기에서 사용 중인 Int와 String은 <code>types</code>이 아니고 <code>values</code>임을 알아야 한다.
+scala에서는 types과 values에 동일한 symbol을 사용하는 것이 가능하다.</p>
+<pre><code class="scala">object Ordering {
+  val Int = new Ordering[Int] {
+    def compare(x: Int, y: Int) = if (x &gt; y) 1 else if (x &lt; y) -1 else 0
+  }
+}
+</code></pre>
+
+<h3 id="reducing-boilerplate">Reducing Boilerplate</h3>
+<p>지금까지 정의한 것을 따르면 잘 동작한다.
+하지만 모든 경우에 대해 boilerplate가 존재하게 된다. Int를 비교할 때마다 <code>Ordering.Int</code>를 반복적으로 사용해야 한다.</p>
+<pre><code class="scala">sort(xs)(Ordering.Int)
+sort(ys)(Ordering.Int)
+sort(strings)(Ordering.String)
+</code></pre>
+
+<h3 id="implicit-parameters">Implicit Parameters</h3>
+<p><code>implicit</code>을 명시함으로서 compiler가 argument <code>ord</code>를 support를 하게 할 수 있다.</p>
+<pre><code class="scala">def sort[A](xs: List[A])(implicit ord: Ordering[A]): List[A] = ...
+</code></pre>
+
+<pre><code class="scala">sort(xs)
+sort(ys)
+sort(strings)
+</code></pre>
+
+<p>위와 같이 하면 컴파일러가 value에 맞춰 type을 결정한다.</p>
+<p>컴파일러가 수행하는 과정을 자세히 살펴보자.</p>
+<pre><code class="scala">sort(xs)
+</code></pre>
+
+<p>xs 가 List[Int] 타입이므로 컴파일러는 위의 코드를 아래와 같이 변환한다.</p>
+<pre><code class="scala">sort[Int](xs)
+</code></pre>
+
+<p>그리고 컴파일러는 candidate definition중 Ordering[Int] 타입에 맞는 것을 찾는다. 위의 케이스에서는 Ordering.Int와 only matching되고 컴파일러는 method sort로 이를 전달한다.</p>
+<pre><code class="scala">sort[Int](xs)(Ordering.Int)
+</code></pre>
+
+<p>candidate values가 어떻게 정의도어있는 지를 살펴 보기 전에 implicit 키워드에 대해 자세히 알아보자.</p>
+<ol>
+<li>method는 오직 하나의 implicit parameter list를 가질 수 있으며 이는 마지막 paramter가 되야 한다.</li>
+<li>At call site, the arguments of the given clause are usually left out, although it is possible to explicitly pass them:</li>
+</ol>
+<pre><code class="scala">// Argument inferred by the compiler
+sort(xs)
+
+// Explicit argument
+sort(xs)(Ordering.Int.reverse)
+</code></pre>
+
+<h3 id="candidates-for-implicit-parameters">Candidates for Implicit Parameters</h3>
+<p>컴파일러가 type T에 대해 어떤 candidate definition를 찾을까?
+컴파일러는 아래 definition을 찾는다.</p>
+<ul>
+<li>have type T,</li>
+<li>are marked implicit,</li>
+<li>are visible at the point of the function call, or are defined in a companion object associated with T.</li>
+</ul>
+<p>most specific한 정의를 찾게 되면 그것을 사용하고 없다면 error를 report한다.</p>
+<h4 id="implicit-definition">implicit Definition</h4>
+<p>implicit definition이란 implicit 키워드와 함께 정의된 것을 말한다.</p>
+<pre><code class="scala">object Ordering {
+  implicit val Int: Ordering[Int] = ...
+}
+</code></pre>
+
+<p>위의 코드는 Int라는 이름을 가진 Ordering[Int] 타입의 implicit value를 정의한 것이다.</p>
+<p>Any val, lazy val, def, or object definition can be marked implicit.</p>
+<p>마지막으로 implicit definitions는 type parameters와 implicit parameters를 가질 수 있다.</p>
+<pre><code class="scala">implicit def orderingPair[A, B](implicit
+  orderingA: Ordering[A],
+  orderingB: Ordering[B]
+): Ordering[(A, B)] = ...
+</code></pre>
+
+<h4 id="implicit-search-scope">Implicit Search Scope</h4>
+<p>type T의 implicit value를 찾기 위해 첫 번째로 visible(inherited, imported, or defined in an enclosing scope)한 모든 implicit definitions를 찾는다.</p>
+<p>만약 컴파일러가 lexcial scope에서 implicit instance와 매칭되는 type T를 찾지 못하면, T와 관련된 companion objects에서 이어서 찾는다. (companion objects와 types는 other types와 연관있다.)</p>
+<p>A companion object is an object that has the same name as a type. 예로 object scala.math.Ordering is the companion of the type scala.math.Ordering.</p>
+<p>The types associated with a type T are:</p>
+<ul>
+<li>if T has parent types T₁ with T₂ ... with Tₙ, the union of the parts of T₁, ... Tₙ as well as T itself,</li>
+<li>if T is a parameterized type S[T₁, T₂, ..., Tₙ], the union of the parts of S and T₁, ..., Tₙ,</li>
+<li>otherwise, just T itself.</li>
+</ul>
+<p>As an example, consider the following type hierarchy:</p>
+<pre><code class="scala">trait Foo[A]
+trait Bar[A] extends Foo[A]
+trait Baz[A] extends Bar[A]
+trait X
+trait Y extends X
+</code></pre>
+
+<p>만약 Bar[Y] 타입의 implicit value가 필요하다면 compiler는 아래와 같은 companion object에서 implicit definition을 찾을 것이다.</p>
+<ul>
+<li>Bar, because it is a part of Bar[Y],</li>
+<li>Y, because it is a part of Bar[Y],</li>
+<li>Foo, because it is a parent type of Bar,</li>
+<li>and X, because it is a parent type of Y.</li>
+<li>However, the Baz companion object will not be visited.</li>
+</ul>
+<h4 id="implicit-search-process">Implicit Search Process</h4>
+<p>search process는 no candidate found 혹은 매칭되는 최소한 하나의 candidate를 결과를 만들어 낸다.</p>
+<p>만약 no no available implicit definition matching 이라면 에러가 repot 된다.</p>
+<pre><code class="scala">scala&gt; def f(implicit n: Int) = ()
+
+scala&gt; f
+       ^
+error: could not find implicit value for parameter n: Int
+</code></pre>
+
+<p>반대로 둘 이상의 implicit definition이 eligibale 하다면 ambiguity가 report 된다.</p>
+<pre><code class="scala">scala&gt; implicit val x: Int = 0
+
+scala&gt; implicit val y: Int = 1
+
+scala&gt; def f(implicit n: Int) = ()
+
+scala&gt; f
+       ^
+error: ambiguous implicit values:
+  both value x of type =&gt; Int
+</code></pre>
+
+<p>same type에 매칭되는 several implicit definitions가 있어도 하나를 특정 할 수 있다면 괜찮다.</p>
+<p>A definition a: A is more specific than a definition b: B if:</p>
+<ul>
+<li>type A has more “fixed” parts,</li>
+<li>or, a is defined in a class or object which is a subclass of the class defining b.</li>
+</ul>
+<p>Let’s see a few examples of priorities at work.</p>
+<p>Which implicit definition matches the Int implicit parameter when the following method f is called?</p>
+<pre><code class="scala">implicit def universal[A]: A = ???
+implicit def int: Int = ???
+def f(implicit n: Int) = ()
+f
+</code></pre>
+
+<p>위의 경우에서 universal은 type paramter를 지니고 int는 아니기에, int가 more fixed parts를 갖고 이는 universal보다 먼저 고려된다. 그렇기 때문에 컴파일러가 int를 선택함에 있어 ambiguity가 없다.</p>
+<p>아래와 같이 있을 때 implicit Int 파라미터를 갖는 f method는 어느 implicit definition에 매치 될까?</p>
+<pre><code class="scala">trait A {
+  implicit val x: Int = 0
+}
+trait B extends A {
+  implicit val y: Int = 1
+  def f(implicit n: Int) = ()
+  f
+}
+</code></pre>
+
+<p>y가 A를 extend하는 trait이므로 y가 A보다 more specific 하다. 그러므로 컴파일러가 y를 선택하는 것에 ambiguity는 없다.</p>
+<h3 id="context-bounds">Context Bounds</h3>
+<p>Syntactic sugar allows the omission of the implicit parameter list:</p>
+<pre><code class="scala">def printSorted[A: Ordering](as: List[A]): Unit = {
+  println(sort(as))
+}
+</code></pre>
+
+<p>Type parameter A has one context bound: Ordering. This is equivalent to writing:</p>
+<pre><code class="scala">def printSorted[A](as: List[A])(implicit ev1: Ordering[A]): Unit = {
+  println(sort(as))
+}
+</code></pre>
+
+<p>More generally, a method definition such as:</p>
+<pre><code class="scala">def f[A: U₁ ... : Uₙ](ps): R = ...
+</code></pre>
+
+<p>Is expanded to:</p>
+<pre><code class="scala">def f[A](ps)(implicit ev₁: U₁[A], ..., evₙ: Uₙ[A]): R = ...
+</code></pre>
+
+<h3 id="implicit-query">Implicit Query</h3>
+<p>At any point in a program, one can query an implicit value of a given type by calling the implicitly operation:</p>
+<pre><code class="scala">scala&gt; implicitly[Ordering[Int]]
+res0: Ordering[Int] = scala.math.Ordering$Int$@73564ab0
+</code></pre>
+
+<p>Note that implicitly is not a special keyword, it is defined as a library operation:</p>
+<pre><code class="scala">def implicitly[A](implicit value: A): A = value
+</code></pre>
+
+<h3 id="summary">Summary</h3>
+<p>In this lesson we have introduced the concept of type-directed programming, a language mechanism that infers values from types.</p>
+<p>There has to be a unique (most specific) implicit definition matching the queried type for it to be selected by the compiler.</p>
+<p>Implicit values are searched in the enclosing lexical scope (imports, parameters, inherited members) as well as in the implicit scope of the queried type.</p>
+<p>The implicit scope of type is made of implicit values defined in companion objects of types associated with the queried type.</p>
+<hr />
+
+<h2 id="week3-2-type-classes">Week3-2: Type Classes</h2>
+<p>In the previous lectures we have seen a particular pattern of code combining parameterized types and implicits.
+We have defined a parameterized type Ordering[A], implicit instances of that type for concrete types A, and implicit parameters of type Ordering[A]:</p>
+<pre><code class="scala">trait Ordering[A] {
+  def compare(a1: A, a2: A): Int
+}
+
+object Ordering {
+  implicit val Int: Ordering[Int] =
+    new Ordering[Int] {
+      def compare(x: Int, y: Int) = if (x &lt; y) -1 else if (x &gt; y) 1 else 0
+    }
+  implicit val String: Ordering[String] =
+    new Ordering[String] {
+      def compare(s: String, t: String) = s.compareTo(t)
+  }
+}
+
+def sort[A: Ordering](xs: List[A]): List[A] = ...
+</code></pre>
+
+<p>We say that Ordering is a type class.</p>
+<p>Type classes provide yet another form of polymorphism.
+The method sort can be called with lists containing elements of any type A for which there is an implicit value of type Ordering[A].</p>
+<p>At compile-time, the compiler resolves the specific Ordering implementation that matches the type of the list elements.</p>
+<h3 id="retroactive-extension">Retroactive Extension</h3>
+<p>Type classes let us add new features to data types without changing the original definition of these data types. For instance, consider the following Rational type, modeling a rational number:</p>
+<pre><code class="scala">/** A rational number
+  * @param num   Numerator
+  * @param denom Denominator
+  */
+case class Rational(num: Int, denom: Int)
+</code></pre>
+
+<p>We can add the capability "to be compared" to the type Rational by defining an implicit instance of type Ordering[Rational]:</p>
+<pre><code class="scala">object RationalOrdering {
+  implicit val orderingRational: Ordering[Rational] =
+    new Ordering[Rational] {
+      def compare(q: Rational, r: Rational): Int =
+        q.num * r.denom - r.num * q.denom
+    }
+}
+</code></pre>
+
+<h3 id="laws">Laws</h3>
+<p>So far, we have shown how to implement instances of a type class, for some specific types (Int, String, and Rational).</p>
+<p>Now, let’s have a look at the other side: how to use (and reason about) type classes.</p>
+<p>For example, the sort function is written in terms of the Ordering type class, whose implementation is itself defined by each specific instance, and is therefore unknown at the time the sort function is written. If an Ordering instance implementation is incorrect, then the sort function becomes incorrect too!</p>
+<p>To prevent this from happening, type classes are often accompanied by laws, which describe properties that instances must satisfy, and that users of type classes can rely on.</p>
+<p>Can you think of properties that instances of the type class Ordering must satisfy, so that we can be confident that the method sort won’t be broken?</p>
+<p>Instances of the Ordering[A] type class must satisfy the following properties:</p>
+<ul>
+<li>inverse: the sign of the result of comparing x and y must be the inverse of the sign of the result of comparing y and x,</li>
+<li>transitive: if a value x is lower than y and that y is lower than z, then x must also be lower than z,</li>
+<li>consistent: if two values x and y are equal, then the sign of the result of comparing x and z should be the same as the sign of the result of comparing y and z.</li>
+</ul>
+<p>The authors of a type class should think about such kind of laws and they should provide ways for instance implementers to check that these laws are satisfied.</p>
+<h3 id="example-of-type-class-ring">Example of Type Class: Ring</h3>
+<p>Let’s see how we can define a type class modeling a ring structure. A ring is an algebraic structure defined as follows according to Wikipedia:</p>
+<p>In mathematics, a ring is one of the fundamental algebraic structures used in abstract algebra. It consists of a set equipped with two binary operations that generalize the arithmetic operations of addition and multiplication. Through this generalization, theorems from arithmetic are extended to non-numerical objects such as polynomials, series, matrices and functions.</p>
+<p>This structure is so common that, by abstracting over the ring structure, developers could write programs that could then be applied to various domains (arithmetic, polynomials, series, matrices and functions).</p>
+<p>A ring is a set equipped with two binary operations, + and *, satisfying the following laws (called the ring axioms):</p>
+<p>(a + b) + c = a + (b + c)   + is associative
+a + b = b + a   + is commutative
+a + 0 = a   0 is the additive identity
+a + -a = 0  -a is the additive inverse of a
+(a * b) * c = a * (b * c)   * is associative
+a * 1 = a   1 is the multiplicative identity
+a * (b + c) = a * b + a * c left distributivity
+(b + c) * a = b * a + c * a right distributivity
+Here is how we can define a ring type class in Scala:</p>
+<pre><code class="scala">trait Ring[A] {
+  def plus(x: A, y: A): A
+  def mult(x: A, y: A): A
+  def inverse(x: A): A
+  def zero: A
+  def one: A
+}
+</code></pre>
+
+<p>Here is how we define an instance of Ring[Int]:</p>
+<pre><code class="scala">object Ring {
+  implicit val ringInt: Ring[Int] = new Ring[Int] {
+    def plus(x: Int, y: Int): Int = x + y
+    def mult(x: Int, y: Int): Int = x * y
+    def inverse(x: Int): Int = -x
+    def zero: Int = 0
+    def one: Int = 1
+  }
+}
+</code></pre>
+
+<p>Finally, this is how we would define a function that checks that the + associativity law is satisfied by a given Ring instance:</p>
+<pre><code class="scala">def plusAssociativity[A](x: A, y: A, z: A)(implicit ring: Ring[A]): Boolean =
+  ring.plus(ring.plus(x, y), z) == ring.plus(x, ring.plus(y, z))
+</code></pre>
+
+<p>Note: in practice, the standard library already provides a type class Numeric, which models a ring structure.</p>
+<h3 id="summary_1">Summary</h3>
+<p>In this lesson we have identified a new programming pattern: type classes.</p>
+<p>Type classes provide a form of polymorphism: they can be used to implement algorithms that can be applied to various types. The compiler selects the type class implementation for a specific type at compile-time.</p>
+<p>A type class definition is a trait that takes type parameters and defines operations that apply to these types. Generally, a type class definition is accompanied by laws, checking that implementations of their operations are correct.</p>
+<hr />
+
+<h2 id="week3-3-conditional-implicit-definitions">Week3-3: Conditional Implicit Definitions</h2>
+<p>In this lesson, we will see that implicit definitions can themselves take implicit parameters.</p>
+<p>Let’s start with an example. Consider how we order two String values: is "abc" lexicographically before "abd"?</p>
+<p>To answer this question, we need to compare all the characters of the String values, element-wise:</p>
+<ul>
+<li>is a before a? No.</li>
+<li>is b before b? No.</li>
+<li>is c before d? Yes!</li>
+<li>We conclude that "abc" is before "abd".</li>
+</ul>
+<p>So, we compare two sequences of characters with an algorithm that compares the characters of the sequences element-wise. Said otherwise, we can define an ordering relation for sequence of characters based on the ordering relation for characters.</p>
+<p>Can we generalize this process to sequences of any element type A for which there is an implicit Ordering[A] instance?</p>
+<p>The signature of such an Ordering[List[A]] definition takes an implicit parameter of type Ordering[A]:</p>
+<pre><code class="scala">implicit def orderingList[A](implicit ord: Ordering[A]): Ordering[List[A]]
+</code></pre>
+
+<p>For reference, a complete implementation is shown below. You can see that at some point in the algorithm we call the operation compare of the ord parameter:</p>
+<pre><code class="scala">implicit def orderingList[A](implicit ord: Ordering[A]): Ordering[List[A]] =
+  new Ordering[List[A]] {
+    def compare(xs: List[A], ys: List[A]) =
+      (xs, ys) match {
+        case (x :: xsTail, y :: ysTail) =&gt;
+          val c = ord.compare(x, y)
+          if (c != 0) c else compare(xsTail, ysTail)
+        case (Nil, Nil) =&gt; 0
+        case (_, Nil)   =&gt; 1
+        case (Nil, _)   =&gt; -1
+      }
+  }
+</code></pre>
+
+<p>With this definition, we can sort a list of list of numbers, for example:</p>
+<pre><code class="scala">scala&gt; val xss = List(List(1, 2, 3), List(1), List(1, 1, 3))
+res0: List[List[Int]] = List(List(1, 2, 3), List(1), List(1, 1, 3))
+
+scala&gt; sort(xss)
+res1: List[List[Int]] = List(List(1), List(1, 1, 3), List(1, 2, 3))
+</code></pre>
+
+<p>But let’s take a step back. We haven’t defined an instance of Ordering[List[Int]] and yet we have been able to sort a list of List[Int] elements! How did the compiler manage to provide such an instance to us?</p>
+<p>This happened in several steps.</p>
+<p>First, we called sort(xss). The compiler fixed the type parameter A of the method to List[Int], based on the type of the argument xss, as if we had written:</p>
+<pre><code class="scala">sort[List[Int]](xss)
+</code></pre>
+
+<p>Then, the compiler searched for an implicit definition of type Ordering[List[Int]]. It found that our orderingList definition could be a match under the condition that it could also find an implicit definition of type Ordering[Int], which it eventually found. Finally, the compiler inserted the following arguments for us:</p>
+<pre><code class="scala">sort[List[Int]](xss)(orderingList(Ordering.Int))
+</code></pre>
+
+<p>In this case, the compiler combined two implicit definitions (orderingList and Ordering.Int) before terminating. In general, though, an arbitrary number of implicit definitions can be combined until the search hits a “terminal” definition.</p>
+<p>Consider for instance these four implicit definitions:</p>
+<pre><code class="scala">implicit def a: A = ...
+implicit def aToB(implicit a: A): B = ...
+implicit def bToC(implicit b: B): C = ...
+implicit def cToD(implicit c: C): D = ...
+</code></pre>
+
+<p>We can then ask the compiler to summon a value of type D:</p>
+<pre><code class="scala">implicitly[D]
+</code></pre>
+
+<p>The compiler finds that there is a candidate definition, cToD, that can provide such a D value, under the condition that it can also find an implicit definition of type C. Again, it finds that there is a candidate definition, bToC, that can provide such a C value, under the condition that it can also find an implicit definition of type B. Once again, it finds that there is candidate definition, aToB, that can provide such a B value, under the condition that it can also find an implicit value of type A. Finally, it finds a candidate definition for type A and the algorithm terminates!</p>
+<p>At the beginning of this lesson, we showed that by using implicit parameters the compiler could infer simple arguments for us. We have now reached a point where we can appreciate that the compiler can infer more complex arguments (by inferring arguments of arguments!).</p>
+<p>It not only significantly reduces code verbosity, it also alleviates developers from implementing parts of their programs, which are summoned by the compiler based on their type (hence the name “type-directed programming”). In practice, complex fragments of programs such as serializers and deserializers of data types can be summoned by the compiler.</p>
+<h3 id="recursive-implicit-definitions">Recursive Implicit Definitions</h3>
+<p>What happens if we write an implicit definition that depends on itself?</p>
+<pre><code class="scala">trait X
+
+implicit def loop(implicit x: X): X = x
+
+implicitly[X]
+</code></pre>
+
+<p>The compiler detects that it keeps searching for an implicit definition of the same type and returns an error:</p>
+<pre><code>error: diverging implicit expansion for type X
+starting with method loop
+</code></pre>
+
+<p>Note: it is possible to write recursive implicit definitions by making sure that the search always terminates, but this is out of the scope of this lesson.</p>
+<h3 id="example-sort-by-multiple-criteria">Example: Sort by Multiple Criteria</h3>
+<p>Consider a situation where we want to compare several movies. Each movie has a title, a rating (in number of “stars”), and a duration (in minutes):</p>
+<pre><code class="scala">case class Movie(title: String, rating: Int, duration: Int)
+
+val movies = Seq(
+  Movie(&quot;Interstellar&quot;, 9, 169),
+  Movie(&quot;Inglourious Basterds&quot;, 8, 140),
+  Movie(&quot;Fight Club&quot;, 9, 139),
+  Movie(&quot;Zodiac&quot;, 8, 157)
+)
+</code></pre>
+
+<p>We want to sort movies by rating first, and then by duration.</p>
+<p>To achieve this, a first step is to change our sort function to take as parameter the sort criteria in addition to the elements to sort:</p>
+<pre><code class="scala">def sort[A, B](elements: Seq[A])(critera: A =&gt; B)(implicit
+  ord: Ordering[B]
+): Seq[A] = ...
+</code></pre>
+
+<p>The sort algorithm remains the same except that instead of comparing the elements together, we compare the criteria applied to each element.</p>
+<p>With this function, here is how we can sort movies by title:</p>
+<pre><code class="scala">sort(movies)(_.title)
+</code></pre>
+
+<p>And here is how we can sort them by rating:</p>
+<pre><code class="scala">sort(movies)(_.rating)
+</code></pre>
+
+<p>Each time the sort function is called, its ordering parameter is inferred by the compiler based on the type of the criteria (String and then Int, in the above examples).</p>
+<p>However, our initial problem was to sort the movies by multiple criteria. We would like to sort first by rating and then by duration:</p>
+<pre><code class="scala">sort(movies)(movie =&gt; (movie.rating, movie.duration))
+</code></pre>
+
+<p>The type of the criteria is now a tuple type (Int, Int). Unfortunately, the compiler is unable to infer the corresponding ordering parameter. We need to define how simple orderings can be combined together to get an ordering for multiple criteria.</p>
+<p>We do so by defining the following implicit ordering:</p>
+<pre><code class="scala">implicit def orderingPair[A, B](implicit
+  orderingA: Ordering[A],
+  orderingB: Ordering[B]
+): Ordering[(A, B)] = ...
+</code></pre>
+
+<p>This definition provides an ordering for pairs of type (A, B) given orderings for types A and B.</p>
+<p>The complete implementation is the following:</p>
+<pre><code class="scala">implicit def orderingPair[A, B](implicit
+  orderingA: Ordering[A],
+  orderingB: Ordering[B]
+): Ordering[(A, B)] =
+  new Ordering[(A, B)] {
+    def compare(pair1: (A, B), pair2: (A, B)): Int = {
+      val firstCriteria = orderingA.compare(pair1._1, pair2._1)
+      if (firstCriteria != 0) firstCriteria
+      else orderingB.compare(pair1._2, pair2._2)
+    }
+  }
+</code></pre>
+
+<p>We first compare the two values according to the first criteria, and if they are equal we compare them according to the second criteria.</p>
+<p>With this definition, the compiler is now able to infer the ordering for the following call:</p>
+<pre><code class="scala">sort(movies)(movie =&gt; (movie.rating, movie.duration))
+</code></pre>
+
+<p>Here is the same call where the inferred parameter is explicitly written:</p>
+<pre><code class="scala">sort(movies)(movie =&gt; (movie.rating, movie.duration))(
+  orderingPair(Ordering.Int, Ordering.Int)
+)
+</code></pre>
+
+<p>Note that in the standard library the sort function that we have defined here is already available as a method sortBy on collections.</p>
+<h3 id="summary_2">Summary</h3>
+<p>In this lesson, we have seen that:</p>
+<ul>
+<li>implicit definitions can also take implicit parameters,
+ an arbitrary number of implicit definitions can be chained until a terminal definition is reached.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../fpp-in-scala/" class="btn btn-neutral" title="Coursera/fpp-in-scala"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../fpp-in-scala/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
