@@ -485,7 +485,37 @@ Java혹은 C와 차이 없다.</p>
 </ul>
 </li>
 <li>(all other special values)</li>
-</ol></div>
+</ol>
+<pre><code class="scala">class Rational(x: Int, y: Int) {
+  require(y != 0, &quot;denominator must be nonezero&quot;)
+
+  def this(x: Int) = this(x, 1) // 여기에서의 this는 constructor 의미로 쓰인다.
+
+  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  private val g = gcd(x, y) // val로 선언했기에 바로 평가되서 다음 부턴 계산을 안하고 재사용한다.
+  def numer = x / g
+//    def numer = x / gcd(x,y) // 만약 이와 같이 선언 하면 매번 gcd를 계산해야 한다. 계산 리소스가 크고 가끔 호출될 때 사용하면 좋다.
+  def denom = y / g
+
+//    def less(that: Rational) = numer * that.denom &lt; that.numer * denom
+  def &lt; (that: Rational) = numer * that.denom &lt; that.numer * denom
+  def max(that: Rational) = if (this.&lt;(that)) that else this
+
+  def +(r: Rational) =
+    new Rational(numer * r.denom + r.numer * denom,
+      denom * r.denom)
+
+  def mul(r: Rational) =
+    new Rational(numer * r.numer,
+      denom * r.denom)
+
+  def unary_- : Rational = new Rational(-numer, denom)
+
+  def -(that: Rational) = this + -that
+
+  override def toString = s&quot;$numer/$denom&quot;
+}
+</code></pre></div>
             </div>
         </div>
 
