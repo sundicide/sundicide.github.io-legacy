@@ -141,6 +141,52 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week3">Week3</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#class-hierarchies">Class Hierarchies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#object-definitions">Object Definitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dynamic-binding">Dynamic Binding</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-32-how-classes-are-organized">Lecture 3.2 - How Classes Are Organized</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#packages">Packages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#forms-of-imports">Forms of Imports</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#automatic-imports">Automatic Imports</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#traits">Traits</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#top-types">Top Types</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#the-nothing-type">The Nothing Type</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exceptions">Exceptions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#the-null-type">The Null Type</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-33-polymorphism">Lecture 3.3 - Polymorphism</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#type-parameter">Type Parameter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#generic-functions">Generic Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#type-inference">Type Inference</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#type-evaluation">Type Evaluation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#polymorphism">Polymorphism</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../fpd-in-scala/">Coursera/fpd-in-scala</a>
@@ -677,6 +723,218 @@ Java혹은 C와 차이 없다.</p>
   override def toString = s&quot;$numer/$denom&quot;
 }
 </code></pre>
+
+<h2 id="week3">Week3</h2>
+<h3 id="class-hierarchies">Class Hierarchies</h3>
+<p>실제 메소드는 runtime type에 의존한다. 이를 dynamic binding이라고 한다.
+이는 OOP에 기본 요소이다.</p>
+<p>아래 함수는 abstract class이다.</p>
+<pre><code class="scala">abstract class IntSet {
+  def incl(x: Int): IntSet
+  def contains(x: Int): Boolean
+}
+</code></pre>
+
+<p>추상 클래스는
+- 구현체가 없는 멤버를 포함할 수 있다.
+- new operator를 사용한 인스턴스 생성을 할 수 없다.</p>
+<pre><code class="scala">abstract class IntSet {
+  def incl(x: Int): IntSet
+  def contains(x: Int): Boolean
+}
+
+class NonEmpty(elem: Int, left: IntSet, right: IntSet) extends IntSet {
+  override def incl(x: Int): IntSet =
+    if (x &lt; elem) new NonEmpty(elem, left incl x, right)
+    else if (x &gt; elem) new NonEmpty(elem, left, right incl x)
+    else this
+
+  override def contains(x: Int): Boolean =
+    if (x &lt; elem) left contains x
+    else if (x &gt; elem) right contains x
+    else true
+
+  override def toString = &quot;{&quot; + left + elem + right + &quot;}&quot;
+}
+
+class Empty extends IntSet {
+  override def incl(x: Int) = new NonEmpty(x, new Empty, new Empty)
+
+  override def contains(x: Int) = false
+  override def toString = &quot;.&quot;
+}
+
+
+val t1 = new NonEmpty(3, new Empty, new Empty)
+val t2 = t1 incl 4
+</code></pre>
+
+<p>위의 예에서 IntSet은 Empty와 NonEmpty의 superclass이다.
+Empty와 NonEmpty는 IntSet의 subclasses이다.
+스칼라에서 superclass가 없으면 java.lang에 있는 Java standard class Object 를 상속 받는다.
+클래스의 direct or indirect superclass를 base classes라고 한다.
+NonEmpty와 IntSet의 base classes는 Object이다.</p>
+<p>non-abstract definition을 redfine할 때는 override keyword를 써줘야 한다.</p>
+<pre><code class="scala">abstract class Base {
+  def foo = 1
+  def bar: Int
+}
+
+class Sub extends Base {
+  override def foo = 2
+  def bar = 3
+}
+</code></pre>
+
+<h3 id="object-definitions">Object Definitions</h3>
+<p>위의 예에서 유저가 많은 EmptySet을 만들게 되면 문제가 발생한다.
+그래서 이를 object로 선언하는 것이 낫다.</p>
+<pre><code class="scala">object Empty extends IntSet {
+  def incl(x: Int) = new NonEmpty(x, new Empty, new Empty)
+  def contains(x: Int) = false
+}
+</code></pre>
+
+<p>이렇게 하면 Empty라는 이름의 singleton object가 만들어 진다.
+이로써 다른 Empty 인스턴스는 만들어질 수 없다.
+Singleton Object는 values 이므로, Empty는 바로 평가된다.</p>
+<h3 id="programs">Programs</h3>
+<p>Scala에서 standalone application을 만드는 것은 가능하다.
+main method를 포함하는 object를 만들면 된다.</p>
+<pre><code class="scala">object Hello {
+  def main(args: Array[String]) = println(&quot;hello world!&quot;)
+}
+</code></pre>
+
+<p>프로그램이 컴파일 되고 나면 아래의 커맨드로 실행할 수 있다.</p>
+<pre><code class="bash">&gt; scala Hello
+</code></pre>
+
+<h3 id="dynamic-binding">Dynamic Binding</h3>
+<p>code invoked by a method call depends on the runtime of the object that contains the method</p>
+<p>ex)</p>
+<pre><code class="scala">Empty contains 1
+</code></pre>
+
+<p>-&gt; false</p>
+<h3 id="lecture-32-how-classes-are-organized">Lecture 3.2 - How Classes Are Organized</h3>
+<h4 id="packages">Packages</h4>
+<p>Classes와 objects는 package안에 구성된다된</p>
+<p>package에 속하는 class, object는 소스 파일의 최상단에 package를 써야 한다.</p>
+<pre><code class="scala">package progfun.examples
+
+object Hello { ... }
+</code></pre>
+
+<p>아래와 같이 프로그램을 실행할 수 있다.</p>
+<pre><code class="bash">&gt; scala progfun.examples.Hello
+</code></pre>
+
+<h4 id="forms-of-imports">Forms of Imports</h4>
+<pre><code class="scala">import week3.Rational // named imports
+import week3.{Rational, Hello} // named imports
+import week3._ // wildcard import
+</code></pre>
+
+<h4 id="automatic-imports">Automatic Imports</h4>
+<ul>
+<li>All members of package scala</li>
+<li>All members of package java.lang</li>
+<li>All members of the singleton object scala.Predef</li>
+</ul>
+<p>Int: scala.Int
+Boolean: scala.Boolean
+Object : java.lang.Object
+require: scala.Predef.require
+assert: scala.Predef.assert</p>
+<h4 id="traits">Traits</h4>
+<p>Java 처럼 Scala는 오직 하나의 superclass를 가질 수 있다.(Single Inheritance)
+하지만 여러개의 supertypes를 갖고 싶다면 어떻게 할까?
+traits를 사용하면 된다.
+trait은 abstract class처럼 정의 하면서 trait 키워드를 쓰면 된다를</p>
+<pre><code class="scala">trait Planar {
+  def height: Int
+  def width: Int
+  def surface = height * width
+}
+</code></pre>
+
+<pre><code class="scala">class Square extends Shape with Planar with Movable ...
+</code></pre>
+
+<p>trait은 Java의 interface와 비슷하지만 더 강력하다.
+fields와 concrete methods(정의된 메소드)를 가질 수 있기 때문이다.</p>
+<p>하지만 trait은 (value) parameters를 가질 수 없다. 이는 클래스만 가능하다.</p>
+<p><img alt="" src="../scala%20class%20hierarchy.png" /></p>
+<h4 id="top-types">Top Types</h4>
+<p>Any: The base type of all types. Methods: '==', '!=', 'equals', 'hashCode', 'toString
+AnyRef: The base type of all reference types; Alias of 'java.lang.Object'
+AnyVal: The base type of all primitive types</p>
+<h4 id="the-nothing-type">The Nothing Type</h4>
+<p>Nothing은 Scala type hierarchy에서 최 하단에 있다.
+type Nothing에는 value가 없다.
+왜 쓰일까?
+- To signal abnormal termination
+- As an element type of empty collection</p>
+<h4 id="exceptions">Exceptions</h4>
+<p>자바와 유사하다</p>
+<pre><code class="scala">throw Exc
+</code></pre>
+
+<p>이 expr의 type은 Nothing이다.</p>
+<p>example</p>
+<pre><code class="scala">def error(msg: String) = throw new Error(msg)
+
+error(&quot;test&quot;)
+</code></pre>
+
+<h4 id="the-null-type">The Null Type</h4>
+<p>every reference class type은 null 값을 갖는다.
+null의 타입은 Null 이다.
+Null은 Object를 상속받는 모든 클래스의 subtype이다.
+하지만 AnyVal의 subtypes과는 incompativle 하다.</p>
+<pre><code class="scala">val x = null // x: Null
+val y: String = null // y: String
+val z: Int = null // error: type mismatch
+</code></pre>
+
+<h3 id="lecture-33-polymorphism">Lecture 3.3 - Polymorphism</h3>
+<h4 id="type-parameter">Type Parameter</h4>
+<p>여러 타입에 대응할 수 있는 타입이다.</p>
+<pre><code class="scala">trait List[T]
+class Cons[T](val head: T, val tail: List[T]) extends List[T]
+class Nil[T] extends List[T]
+</code></pre>
+
+<p>타입 파라미터는 square brackets 안에 쓰인다.</p>
+<h4 id="generic-functions">Generic Functions</h4>
+<p>classes처럼 function에도 type parameter를 사용할 수 있다.</p>
+<pre><code class="scala">def singleton[T](elem: T) = new Cons[T](elem, new Nil[T])
+
+singleton[Int](1)
+singleton[Boolean](true)
+</code></pre>
+
+<h4 id="type-inference">Type Inference</h4>
+<p>스칼라는 function call의 arguments로 부터 parameter의 옳은 타입을 추측할 수 있다.
+그렇기에 대부분의 경우에서 type parameters는 안써도 된다.</p>
+<pre><code class="scala">singleton(1)
+singleton(true)
+</code></pre>
+
+<h4 id="type-evaluation">Type Evaluation</h4>
+<p>스칼라에서 Type parameter는 evaluation에 영향을 끼치지 않는다.
+모든 type parameters와 type arguments는 프로그램을 평가하기 전에 제거된다.
+이를 <code>type erasure</code>라고 부른다.</p>
+<p>Java, Scala, Haskell, ML, OCaml에서는 type erasure를 사용한다.
+하지만 C++, C#, F# 같은 언어는 run time시에도 type parameter를 유지한다.</p>
+<h4 id="polymorphism">Polymorphism</h4>
+<p>function type comes "in many forms"
+- function이 여러 타입의 argument에 적용될 수 있다
+- 타입이 여러 타입의 인스턴스를 가질 수 있다.</p>
+<p>폴리몰피즘의 두 가지 형태
+- subtyping: instances of subclass 는 base class로 전달 될 수 있다.
+- generic: function 혹은 클래스의 instance는 type paramterization으로 만들 수 있다.</p>
               
             </div>
           </div>
