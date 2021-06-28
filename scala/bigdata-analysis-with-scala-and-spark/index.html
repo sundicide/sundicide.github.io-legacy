@@ -985,6 +985,519 @@ val sydneyEmployeesDF = spark.sql(&quot;&quot;&quot;SELECT id, lname
   WHERE city = &quot;Sydney&quot;
   ORDER BY id&quot;&quot;&quot;)
 </code></pre>
+
+<h2 id="dataframes">DataFrames</h2>
+<ol>
+<li>Spark's RDDs와 관련된 API를 제공한다</li>
+<li>자동적으로 aggresively optimized 할 수 있다.</li>
+<li>untyped 이다.
+  = scala compiler가 type check를 하지 않는다.</li>
+</ol>
+<p><code>show()</code> pretty-prints DataFrame in tabular form. Shows first 20 elements.</p>
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+val employeeDF = sc.parallelize(...).toDF
+employeeDF.show( )
+//+---+-----+-------+---+--------+
+// | id|fname| |name|age| city| |
+// +---+-----+-------+---+--------+
+// | 12|  Joe|  Smith| 38|New York|
+// |563|Sally|  Owens| 48|New York|
+// |645|Slate|Markham| 28|  Sydney|
+// |221|David| Walker| 21|  Sydney|
+// +---+-----+-------+---+--------+
+</code></pre>
+
+<p><code>printSchema()</code> prints the schema of your DataFrame in a tree format.</p>
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+val employeeDF = sc.parallelize(...).toDF
+employeeDF.printschema( )
+
+// root
+// |-- id: integer (nullable = true)
+// |-- fname: string (nullable = true)
+// |-- lname: string (nullable = true)
+// |-- age: integer (nullable = true)
+// |-- city: string (nullable = true)
+</code></pre>
+
+<pre><code class="scala">def select(col: String, cols: String*): DataFrame
+// selects a set of named columns and returns a new DataFrame with these
+// columns as a result.
+
+def agg(expr: Column, exprs: Column*): DataFrame
+// performs aggregations on a series of columns and returns a new DataFrame
+// with the calculated output.
+
+def groupBy(col1: String, cols: String*): DataFrame // simplified
+// groups the DataFrame using the specified columns. Intended to be used before an aggregation.
+
+def join(right: DataFrame): DataFrame // simplified
+// inner join with another DataFrame
+</code></pre>
+
+<p>Other transformations include: filter, limit, orderBy, where, as, sort, union, drop, amongst others.</p>
+<p>You can select and work with columns in three ways:
+1. Using $-notation
+  // $-notation requires: import spark.implicits._
+  <code>df.filter($"age" &gt; 18)</code>
+2. Referring to the Dataframe
+  <code>df.filter(df("age")&gt; 18))</code>
+3. Using SQL query string
+  <code>df.filter("age &gt; 18")</code></p>
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+
+val employeeDF = sc.parallelize(...).toDF
+val sydneyEmployeesDF = employeeDF.select(&quot;id&quot;, &quot;lname&quot;)
+  .where(&quot;city == 'Sydney'&quot;)
+  .orderBy( &quot;id&quot;)
+
+// sydneyEmployeesDF:
+// +---+-------+
+// | id|  lname|
+// |221| Walker|
+// |645|Markham|
+// +---+-------+
+</code></pre>
+
+<p>아래 두 코드의 결과는 동일하다.</p>
+<pre><code class="scala">val over30 = employeeDF.filter(&quot;age &gt; 30&quot;).show()
+
+val over30 = employeeDF.where(&quot;age &gt; 30&quot;).show()
+</code></pre>
+
+<pre><code class="scala">employeeDF.filter(($&quot;age&quot; &gt; 25) &amp;&amp; ($&quot;city&quot; === &quot;Sydney&quot;)).show()
+</code></pre>
+
+<p>groupBy function은 <code>RelationalGroupedDataset</code>을 리턴한다.
+이는 count, sum, max, min, avg 같은 함수들을 포함한다.</p>
+<pre><code class="scala">df.groupBy($&quot;attribute1&quot;)
+  .agg(sum($&quot;attribute2&quot;))
+
+df.groupBy($&quot;attribute1&quot;)
+  .count($&quot;attribute2&quot;)
+</code></pre>
+
+<pre><code class="scala">case class Listing(street: String, zip: Int, price: Int)
+
+val listingsDF = . . . // DataFrame of Listings
+
+import org.apache.spark.sql.functions._
+
+val mostExpensiveDF = listingsDF.groupBy($&quot;zip&quot;)
+  .max(&quot;price&quot;)
+val leastExpensiveDF = listingsDF.groupBy($&quot;zip&quot;)
+  .min( &quot;price&quot;)
+</code></pre>
+
+<pre><code class="scala">case class Post( authorID: Int, subforum: String, likes: Int, date: String)
+
+val postsDF = ... // DataFrame of Posts
+
+val rankedDF = postsDF.groupBy($&quot;authorID&quot;, $&quot;subforum&quot;)
+  .agg(count($&quot;authorID&quot;)) // new DF with columns authorID, subforum, count(authorID)
+  .orderBy($&quot;subforum&quot;, $&quot;count(authorID)&quot;.desc)
+
+// postsDF:
+// +--------+--------+-----+----+
+// |authorID|subforum|likes|datel
+// +--------+--------+-----+----+
+//         1|  design|    2|    |
+//         1|  debate|    0|    |
+//         2|  debate|    0|    |
+//         3|  debate|   23|    |
+//         1|  design|    1|    |
+//         1|  design|    0|    |
+//         2|  design|    0|    |
+//         2|  debate|    0|    |
+// +--------+--------+-----+----+
+
+
+// rankedDF:
+// +--------+--------+---------------+
+// |authorID|subforum|count(authorID)|
+// +--------+--------+---------------+
+// |       2|  debate|              2|
+// |       1|  debate|              1|
+// |       3|  debate|              1|
+// |       1|  design|              3|
+// |       2|  design|              1|
+// +--------+--------+---------------+
+</code></pre>
+
+<p>Sometimes you may have a data set with null or NaN values.
+In these cases it's often desirable to do one of the following:</p>
+<ul>
+<li>drop rows/records with unwanted values like null or "NaN"</li>
+<li>replace certain values with a constant</li>
+</ul>
+<p>Dropping records with unwanted values:
+- drop() drops rows that contain null or NaN values in any column and returns a new DataFrame.
+- drop("all") drops rows that contain null or NaN values in all columns and returns a new DataFrame.
+- drop(Array("id", "name")) drops rows that contain null or NaN values in the specified columns and returns a new DataFrame.</p>
+<p>Replacing unwanted values:
+- <code>fill(0)</code> replaces all occurrences of null or NaN in numeric columns with specified value and returns a new DataFrame.
+- <code>fill(Map("minBalance" -&gt; 0))</code> replaces all occurrences of null or NaN in specified column with specified value and returns a new DataFrame.
+- <code>replace(Array("id"),Map(1234 -&gt; 8923))</code> replaces specified value (1234)in specified column (id) with specified replacement value (8923)and returns a new DataFrame.</p>
+<p>Like RDDs, DataFrames also have their own set of actions.</p>
+<ul>
+<li>collect(): Array[Row]
+  Returns an array that contains all of Rows in this DataFrame.</li>
+<li>count(): Long
+  Returns the number of rows in the DataFrame.</li>
+<li>first(): Row/head(): Row
+  Returns the first row in the DataFrame.</li>
+<li>show(): Unit
+  Displays the top 20 rows of DataFrame in a tabular form.</li>
+<li>Eake(n: Int): Array[Row]
+  Returns the first n rows in the DataFrame.</li>
+</ul>
+<p>Joins on DataFrames are similar to those on Pair RDDs, with the one major usage difference that, since DataFrames aren’t key/value pairs, we have to specify which columns we should join on.</p>
+<p>Several types of joins are available:
+- inner, outer, left_outer, right_outer, leftsemi.</p>
+<p>Performing joins:
+Given two DataFrames, df1 and df2 each with a column/attribute called id, we can perform an inner join as follows:
+  <code>df1.join(df2, $"df1.id" === $"df2.id")</code></p>
+<p>It’s possible to change the join type by passing an additional string parameter to join specifying which type of join to perform. E.g.,
+  <code>df1.join(df2, $"df1.id" $"df2.id", "right_outer")</code></p>
+<pre><code class="scala">case class Abo(id: Int, v: (String, String))
+case class Loc(id: Int, v: String)
+
+val as = List(Abo(101, (&quot;Ruetli&quot;, &quot;AG&quot;)), Abo(102, (&quot;Brelaz&quot;, &quot;DemiTarif&quot;)),
+  Abo(103, (&quot;Gress&quot;, &quot;DemiTarifVisa&quot;)), Abo(104, (&quot;Schatten&quot;, &quot;DemiTarif&quot;)))
+val abosDF = sc.parallelize(as).toDF
+
+val ls = List(Loc(101, &quot;Bern&quot;), Loc(101, &quot;Thun&quot;), Loc(102, &quot;Lausanne&quot;), Loc(102, &quot;Geneve&quot;), Loc(102, &quot;Nyon&quot;), Loc(103, &quot;Zurich&quot;), Loc(103, &quot;St-Gallen&quot;), Loc(103, &quot;Chur&quot;))
+val locationsDF = sc.parallelize(ls).toDF
+</code></pre>
+
+<pre><code class="scala">// abosDF:
+// +-—+----------------------+
+// |id|                     v|
+// +-—+----------------------+
+// |101|         [Ruetli, AG]|
+// |102|  [Brelaz, DemiTarif]|
+// |103|[Gress, DemiTarifv...|
+// |104|[Schatten, DemiTarif]|
+// +-—+-------------------+
+
+// locationsDF:
+// +---+---------+
+// |id|         v|
+// |101|     Bern|
+// |101|     Thun|
+// |102| Lausanne|
+// |102|   Geneve|
+// |102|     Nyon|
+// |103|   Zurich|
+// |103|St-Gallen|
+// |103|     Chur|
+// +---+---------+
+</code></pre>
+
+<pre><code class="scala">val abosDF = sc.parallelize(as).toDF
+val locationsDF = sc.parallelize(ls).toDF
+
+val trackedCustomersDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === locationsDF(&quot;id&quot;))
+
+// trackedCustomersDF:
+// +---+--------------------+---+---------+
+// | id|                   v| id|        v|
+// +---+--------------------+---+---------+
+// |101|         [Ruetli,AG]|101|     Bern|
+// |101|         [Ruetli,AG]|101|     Thun|
+// |103|[Gress,DemiTarifV...|103|   Zurich|
+// |103|[Gress,DemiTarifV...|103|St-Gallen|
+// |103|[Gress,DemiTarifV...|103|     Chur|
+// |102|  [Brelaz,DemiTarif]|102| Lausanne|
+// |102|  [Brelaz,DemiTarif]|102|   Geneve|
+// |102|  [Brelaz,DemiTarif]|102|     Nyon|
+// +---+----------------------+---+---------+
+</code></pre>
+
+<pre><code class="scala">val abosWithOptionalLocationsDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === locationsDF(&quot;id&quot;), &quot;left_outer&quot;)
+
+// abosWithOptionalLocationsDF:
+// +---+--------------------+----+---------+
+// | id|                   v|  id|        v|
+// +---+--------------------+----+---------+
+// |101|         [Ruetli,AG]| 101|     Bern|
+// |101|         [Ruetli,AG]| 101|     Thun|
+// |103|[Gress,DemiTarifV...| 103|   Zurich|
+// |103|[Gress,DemiTarifV...| 103|St-Gallen|
+// |103|[Gress,DemiTarifV...| 103|     Chur|
+// |102|  [Brelaz,DemiTarif]| 102| Lausanne|
+// |102|  [Brelaz,DemiTarif]| 102|   Geneve|
+// |102|  [Brelaz,DemiTarif]| 102|     Nyon|
+// |104|[Schatten,DemiTarif]|null|     Nyon|
+// +---+----------------------+---+---------+
+</code></pre>
+
+<p>As expected, customer 104 has returned! :-)</p>
+<pre><code class="scala">case class Demographic(id: Int,
+  age: Int,
+  codingBootcamp: Boolean,
+  country: String,
+  gender: String,
+  isEthnicMinority: Boolean,
+  servedlnMilitary: Boolean)
+val demographicsDF = sc.textfile(...).toDF // DataFrame of Demographic
+
+case class Finances(id: Int,
+  hasDebt: Boolean,
+  hasFinancialDependents: Boolean,
+  hasStudentLoans: Boolean,
+  income: Int)
+val financesDF = sc.textfile(...).toDF // DataFrame of Finances
+
+demographicsDF.join(financesDF, demographicsDF(&quot;ID&quot;) === financesDF(&quot;ID&quot;), &quot;inner&quot;)
+  .filter($&quot;HasDebt&quot; &amp;&amp; $&quot;HasFinancialDependents&quot;)
+  .filter($&quot;CountryLive&quot; === &quot;Switzerland&quot;)
+  .count
+</code></pre>
+
+<p>위의 join과 filter가 붙은 코드를 보면 만약 df가 아닌 일반 데이터였을 경우 join을 먼저 하냐 filter를 먼저 하냐에 따라 성능차이가 크게 달라진다.
+하지만 df에서는 자동적으로 optimization해주기 때문에 이에 대해 걱정할 필요가 없다.</p>
+<p>How is this possible?
+Recall that Spark SQL comes with two specialized backend components:</p>
+<ul>
+<li>Catalyst, query optimizer.</li>
+<li>Tungsten, off-heap serializer.</li>
+</ul>
+<h3 id="limitations-of-dataframes">Limitations of DataFrames</h3>
+<ol>
+<li>
+<p>Untyped!
+찾고자 하는 column이 없을 시 compile은 되지만 실행해보면 에러가 발생한다.</p>
+</li>
+<li>
+<p>Limited Data Types
+If your data can’t be expressed by case classes/Products and standard Spark SQL data types, it may be difficult to ensure that a Tungsten encoder exists for your data type.
+E.g., you have an application which already uses some kind of complicated regular Scala class.</p>
+</li>
+<li>
+<p>Requires Semi-Structured/Structured Data
+만약 your unstructured data가 schema를 가진 형태로 reformulated될 수 없다면 RDDs를 사용하는 것이 더 좋다.</p>
+</li>
+</ol>
+<pre><code class="scala">case class Listing(street: String, zip: Int, price: Int)
+val listingsDF = ... // DataFrame of Listings
+
+import org.apache.spark.sql.functions._
+val averagePricesDF = listingsDF.groupBy($&quot;zip&quot;)
+  .avg(&quot;price&quot;)
+// averagePrices: Array[org.apache.spark.sql.Row]
+
+averagePrices.head.schema.printTreeString()
+// root
+// 1-- zip: integer (nullable = true)
+// 1-- avg(price): double (nullable = true)
+
+val averagePricesAgain = averagePrices.map {
+  row =&gt; (row(0).aslnstanceOf[Int], row(1).aslnstanceOf[Double])
+}
+// mostExpensiveAgain: Array[(Int, Double)]
+</code></pre>
+
+<p>DataFrames are actually Datasets.</p>
+<pre><code class="scala">type DataFrame = DataSet[Row]
+</code></pre>
+
+<ul>
+<li>Datasets can be thought of as typed distributed collections of data.</li>
+<li>Dataset API unifies the DataFrame and RDD APIs. Mix and match!</li>
+<li>Datasets require strucutred/semi-structured data. Schemas and Encoders core part of Datasets.</li>
+</ul>
+<pre><code class="scala">// We can freely mix APls!
+listingsDS.groupByKey(l =&gt; l.zip) // looks like groupByKey on RDDs!
+  .agg(avg($&quot;price&quot;).as[Double]) // looks like our DataFrame operators!
+</code></pre>
+
+<h2 id="datasets">Datasets</h2>
+<p>Datasets are a something in the middle between DataFrames and RDDs
+- You can still use relational DataFrame operations as we learned in previous sessions on Datasets.
+- Datasets add more typed operations that can be used as well.
+- Datasets let you use higher-order functions like map, flatMap, filter again!</p>
+<p>Datasets can be used when you want a mix of functional and relational transformations while benefiting from some of the optimizations on DataFrames.
+And we've almost got a type safe API as well.</p>
+<h3 id="creating-datasets">Creating Datasets</h3>
+<p><strong>From a DataFrame.</strong>
+Just use the toDS convenience method.</p>
+<blockquote>
+<p>myDF.toDS // requires import spark.implicits._</p>
+</blockquote>
+<p>Note that often it's desirable to read in data from JSON from a file, which can be done with the read method on the SparkSession object like we saw in previous sessions, and then converted to a Dataset:</p>
+<blockquote>
+<p>val myDS = spark.read.json("people.json").as[Person]</p>
+</blockquote>
+<p><strong>From an RDD.</strong>
+Just use the toDS convenience method.</p>
+<blockquote>
+<p>myRDD.toDS // requires import spark.implicits._</p>
+</blockquote>
+<p><strong>From common Scala types.</strong>
+Just use the toDS convenience method.</p>
+<blockquote>
+<p>List("yay", "ohnoes", "hooray!").toDS // requires import spark.implicits._</p>
+</blockquote>
+<p>Recall the Column type from DataFrames. On Datasets, typed operations tend to act on TypedColumn instead.</p>
+<p>Remember untyped transformations from DataFrames?
+The Dataset API includes both untyped and typed transformations.</p>
+<ul>
+<li><strong>untyped transformations</strong> the transformations we learned on DataFrames.</li>
+<li><strong>typed transformations</strong> typed variants of many DataFrame transformations + additional transformations such as RDD-like higher-order functions map, flatMap, etc.</li>
+</ul>
+<p>These APls are integrated. You can call a map on a DataFrame and get back a Dataset, for example.
+- Caveat: not every operation you know from RDDs are available on Datasets, and not all operations look 100% the same on Datasets as they did on RDDs.</p>
+<p>But remember, you may have to explicitly provide type information when going from a DataFrame to a Dataset via typed transformations.</p>
+<pre><code class="scala">val keyValuesDF = List((3, &quot;Me&quot;), (1, &quot;Thi&quot;), (2, &quot;Se&quot;), (3, &quot;ssa&quot;) (3, &quot;-&quot;)), (2, &quot;cre&quot;) (2, &quot;t&quot;)).toDF
+val res = keyValuesDF.map(row =&gt; row(0).asinstanceOf[Int] + 1) // Ew...
+</code></pre>
+
+<h3 id="common-typed-transformation-on-datasets">Common (Typed) Transformation on Datasets</h3>
+<ul>
+<li>map        map<a href="f: T =&gt; U">U</a>: Dataset[U]</li>
+<li>flatMap    flatMap<a href="f: T =&gt; Traversabl eOnce[U]">U</a>: Dataset[U]</li>
+<li>filter     filter(pred: T =&gt; Bool ean): Dataset[T]</li>
+<li>distinct    distinct(): Dataset[T]</li>
+<li>groupByKey  groupByKey<a href="f: T =&gt; K">K</a>: KeyValueGroupedDataset[K, T]</li>
+<li>coalesce    coalesce(numPartitions: Int): Dataset[T]
+  Apply a function to each element in the Dataset and return a Dataset of the contents of the iterators returned.</li>
+<li>repartition repartition(numPartitions: Int): Dataset[T]
+  Apply predicate function to each element in the Dataset and return a Dataset of elements that have passed the predicate condition, pred.</li>
+</ul>
+<h3 id="grouped-operations-on-datasets">Grouped Operations on Datasets</h3>
+<p>Like on DataFrames, Datasets have a special set of aggregation operations meant to be used after a call to groupByKey on a Dataset.</p>
+<ul>
+<li>calling groupByKey on a Dataset returns a KeyValueGroupedDataset</li>
+<li>KeyValueGroupedDatasetcontains a number of aggregation operations which return Datasets</li>
+</ul>
+<p>How to group &amp; aggregate on Datasets?
+1. Call groupByKey on a Dataset, get back a KeyValueGroupedDataset.
+2. Use an aggregation operation on KeyValueGroupedDataset (return Datasets)</p>
+<h3 id="some-keyvaluegroupeddataset-aggregation-operations">Some KeyValueGroupedDataset Aggregation Operations</h3>
+<ul>
+<li>reduceGroups  reduceGroups(f: (V, V) =&gt; V): Dataset[(K, V)]
+  Reduces the elements of each group of data using the spec­ified binary function. The given function must be commutative and associative or the result may be non-deterministic.</li>
+<li>agg           agg<a href="col: TypedColumn[V, U]">U</a>: Dataset[(K, U)]
+  Computes the given aggregation, returning a Dataset of tuples for each unique key and the result of computing this aggregation over all elements in the group.</li>
+</ul>
+<pre><code class="scala">someDS.agg(avg($&quot;column&quot;)) // error! untyped regular Column을 TypedColumn으로 변경해줘야 한다.
+someDS.agg(avg($&quot;column&quot;).as[Double])
+</code></pre>
+
+<ul>
+<li>mapGroups      mapGroups<a href="f: (K, Iterator[V]) = &gt; U">U</a>: Dataset[U]
+  Applies the given function to each group of data. For each unique group, the function will be passed the group key and an iterator that contains all of the elements in the group. The function can return an element of arbitrary type which wi11 be returned as a new Dataset.</li>
+<li>flatMapGroups  flatMapGroups<a href="f: (K, Iterator[V]) = &gt; TraversableOnce[U]">U</a>: Dataset[U]
+  Applies the given function to each group of data. For each unique group, the function will be passed the group key and an iterator that contains all of the elements in the group. The function can return an iterator containing elements of an arbitrary type which will be returned as a new Dataset.</li>
+</ul>
+<p>Dataset API를 살펴보면 RDD에는 있지만 여기엔 reduceByKey가 없는 것을 알 수 있다.</p>
+<pre><code class="scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
+
+val keyValuesDS = keyValues.toDS
+
+keyValuesDS.groupByKey(p =&gt; p._1)
+  .mapGroups((k, vs) =&gt; (k, vs.foldleft(&quot;&quot;)((acc, p) =&gt; ace + p._2)))
+
+// +---+----------+
+// | _1|        _2|
+// +---+----------+
+// |  1|   ThisisA|
+// |  3|Message:-)|
+// |  2|    Secret|
+// +---+----------+
+</code></pre>
+
+<pre><code class="scala">keyValuesDS.groupByKey(p =&gt; p._1)
+  .mapValues(p =&gt; p._2)
+  .reduceGroups((acc, str) =&gt; ace + str)
+</code></pre>
+
+<h3 id="aggregators">Aggregators</h3>
+<p>A class that helps you generically aggregate data. Kind of like the aggregate method we saw on RDDs.</p>
+<blockquote>
+<p>class Aggregator[-IN, BUF, OUT]</p>
+</blockquote>
+<ul>
+<li>IN is the input type to the aggregator. When using an aggregator after groupByKey, this is the type that represents the value in the key/value pair.</li>
+<li>BUF is the intermediate type during aggregation.</li>
+<li>OUT is the type of the output of the aggregation .</li>
+</ul>
+<p>This is how implement our own Aggregator:</p>
+<pre><code class="scala">val myAgg = new Aggregator[IN, BUF, OUT] {
+  def zero: BUF = ...                       // The initial value.
+  def reduce(b: BUF, a: IN): BUF = ...     // Add an element to the running total
+  def merge(b1 : BUF, b2: BUF): BUF = ... // Merge intermediate values.
+  def finish(b: BUF): OUT = ...           // Return the final result.
+}.toColumn
+
+</code></pre>
+
+<pre><code class="scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
+
+val keyValuesDS = keyValues.toDS
+
+val strConcat = new Aggregator[(Int, String) , String, String] {
+  def zero: String = &quot;&quot;
+  def reduce(b: String, a: (Int, String)): String = b + a._2
+  def merge(bl : String, b2: String) : String = bl + b2
+  def finish(r: String) : String = r
+  override def bufferEncoder: Encoder[String] = Encoders.STRING
+  override def outputEncoder: Encoder[String] = Encoders.STRING
+}.toColumn
+
+keyValuesDS.groupByKey(pair =&gt; pair._1)
+  .agg(strConcat.as[String]).show
+
+
+// +------+--------------------+
+// | value|anon$1(scala.Tuple2)|
+// +------+--------------------+
+// |     1|             ThisisA|
+// |     3|          Message:-)|
+// |     2|              Secret|
+// +------+--------------------+
+</code></pre>
+
+<h3 id="encoders">Encoders</h3>
+<p>Encoders are what convert your data between JVM objects and Spark SQL's specialized internal (tabular) representation.
+They're required by all Datasets!</p>
+<h3 id="common-dataset-actions">Common Dataset Actions</h3>
+<ul>
+<li>collect(): Array[T]
+  Returns an array that contains all of Rows in this Dataset.</li>
+<li>count(): Long
+  Returns the number of rows in the Dataset.</li>
+<li>first(): T/head(): T
+  Returns the first row in this Dataset.</li>
+<li>foreach(f: T =&gt; Unit): Unit
+  Applies a function f to all rows.</li>
+<li>reduce(f: (T, T) =&gt; T): T
+  Reduces the elements of this Dataset using the specified binary function.</li>
+<li>show(): Unit
+  Displays the top 20 rows of Dataset in a tabular form.</li>
+<li>take(n: Int): Array[T]
+  Returns the first n rows in the Dataset.</li>
+</ul>
+<h3 id="limitations-of-datasets">Limitations of Datasets</h3>
+<ul>
+<li>Catalyst Can't Optimize All Operations</li>
+<li>Limited Data Types</li>
+<li>Requires Semi-Structured/Structured Data</li>
+</ul>
+<h2 id="when-to-use-datasets-vs-dataframes-vs-rdds">When to use Datasets vs DataFrames vs RDDs?</h2>
+<p>Use Datasets when...
+- you have structured / semi-structured data
+- you want typesafety
+- you need to work with functional APls
+- you need good performance, but it doesn't have to be the best</p>
+<p>Use DataFrames when...
+- you have structured / semi-structured data
+- you want the best possible performance, automatically optimized for you</p>
+<p>Use RDDs when...
+- you have unstructured data
+- you need to fine-tune and manage low-level details of ROD computations
+- you have complex data types that cannot be serialized with Encoders</p>
               
             </div>
           </div>
