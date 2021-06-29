@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Week1 - sundicide</title>
+  <title>Coursera/bigdata-analysis-spark - sundicide</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Week1";
+    var mkdocs_page_name = "Coursera/bigdata-analysis-spark";
     var mkdocs_page_input_path = "scala/bigdata-analysis-with-scala-and-spark.md";
     var mkdocs_page_url = null;
   </script>
@@ -54,10 +54,30 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Scala</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../fpp-in-scala/">Coursera/fpp-in-scala</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../fpd-in-scala/">Coursera/fpd-in-scala</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Coursera/bigdata-analysis-spark</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#why-scala-why-spark">Why Scala? Why spark?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-transformations-in-the-wild">Common Transformations in the Wild</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-actions-in-the-wild">Common Actions in the Wild</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transformations-on-two-rdds">Transformations on Two RDDs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-useful-rod-actions">Other Useful ROD Actions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#why-is-spark-good-for-data-science">Why is Spark Good for Data Science?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#iteration-example-logistic-regression">Iteration, Example: Logistic Regression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#excerciese">Excerciese</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
       </div>
@@ -80,8 +100,12 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Scala &raquo;</li>
+        
+      
     
-    <li>Week1</li>
+    <li>Coursera/bigdata-analysis-spark</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -938,7 +962,7 @@ val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)
 - JSON
 - CSV
 - Parquet
-. JDBC</p>
+- JDBC</p>
 <p>To see a list of all available methods for directly reading in semi-structured/structured data, see the latest API docs for DataFrameReader: http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrameReader</p>
 <h3 id="sql-literals">SQL Literals</h3>
 <p>DataFrame이 만들어 졌으면 이제 dataset에 SQL syntax를 사용할 수 있다.</p>
@@ -1148,7 +1172,7 @@ In these cases it's often desirable to do one of the following:</p>
   Returns the first row in the DataFrame.</li>
 <li>show(): Unit
   Displays the top 20 rows of DataFrame in a tabular form.</li>
-<li>Eake(n: Int): Array[Row]
+<li>take(n: Int): Array[Row]
   Returns the first n rows in the DataFrame.</li>
 </ul>
 <p>Joins on DataFrames are similar to those on Pair RDDs, with the one major usage difference that, since DataFrames aren’t key/value pairs, we have to specify which columns we should join on.</p>
@@ -1503,6 +1527,13 @@ They're required by all Datasets!</p>
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../fpd-in-scala/" class="btn btn-neutral" title="Coursera/fpd-in-scala"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -1524,6 +1555,8 @@ They're required by all Datasets!</p>
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+      
+        <span><a href="../fpd-in-scala/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>
