@@ -59,6 +59,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../fpd-in-scala/">Coursera/fpd-in-scala</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel-programming/">Coursera/parallel-programming</a>
+                    </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Coursera/bigdata-analysis-spark</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#week1">Week1</a>
@@ -145,6 +147,10 @@
     </li>
     </ul>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../my-scala/">My Scala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../my-spark/">My Spark</a>
+                    </li>
                 </ul>
       </div>
     </div>
@@ -216,16 +222,20 @@ Spark는 이 2가지 이슈를 잘 해결해준다.</p>
 <p>Idea: Keep all data immutable and in-memory. All operations on data are just functional transformations, like regular Scala collections. Fault tolerance is achieved by replaying functional transformations over original dataset.
 Result: Spark has been shown to be l00x more performant than Hadoop, while adding even more expressive APls.</p>
 <p>RDD는 immutable sequential 혹은 parallel Scala collections와 유사하다.
-다음과 같은 Combinators를 제공한다.
-- map
-- flatMap
-- filter
-- reduce
-- fold
-- aggregate</p>
-<p>RDD 를 만드는 방법은 두 가지가 있다.
-1. Transforming an existing RDD
-2. From a SparkContext (or SparkSession) object.</p>
+다음과 같은 Combinators를 제공한다.</p>
+<ul>
+<li>map</li>
+<li>flatMap</li>
+<li>filter</li>
+<li>reduce</li>
+<li>fold</li>
+<li>aggregate</li>
+</ul>
+<p>RDD 를 만드는 방법은 두 가지가 있다.</p>
+<ol>
+<li>Transforming an existing RDD</li>
+<li>From a SparkContext (or SparkSession) object.</li>
+</ol>
 <p>Scala의 collections에는 transformer와 accessors가 있다.</p>
 <p>Transformer: Return new collections as results
 e.g. map, filter, flatMap, groupBy</p>
@@ -285,7 +295,9 @@ val totalChars = lengthsRdd.reduce(_ + _)
 <p>RDD[String]으로 이루어진 gigabytes의 log가 있다고 가정하다.
 그렇담 2016년 12월에 발생한 ERROR 로그의 개수는 어떻게 카운트 할까?</p>
 <pre><code class="scala">val lastYearslogs: RDD[String] = ...
-val numDecErrorlogs = lastYearslogs.filter(lg=&gt; lg.contains(&quot;2016-12&quot;) &amp;&amp; lg.contains(&quot;error&quot;))
+val numDecErrorlogs = lastYearslogs.filter(
+    lg=&gt; lg.contains(&quot;2016-12&quot;) &amp;&amp; lg.contains(&quot;error&quot;)
+  )
   .count()
 </code></pre>
 
@@ -1596,8 +1608,10 @@ They're required by all Datasets!</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../my-scala/" class="btn btn-neutral float-right" title="My Scala">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../fpd-in-scala/" class="btn btn-neutral" title="Coursera/fpd-in-scala"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../parallel-programming/" class="btn btn-neutral" title="Coursera/parallel-programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -1623,8 +1637,10 @@ They're required by all Datasets!</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../fpd-in-scala/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../parallel-programming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../my-scala/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
