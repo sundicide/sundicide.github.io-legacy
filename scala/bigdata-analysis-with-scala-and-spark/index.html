@@ -152,6 +152,11 @@
                     <li class="toctree-l1"><a class="reference internal" href="../my-spark/">My Spark</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Rust</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rust/01-start-rust/">01-start-rust</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -345,13 +350,13 @@ for (i &lt;- 1 to numIterations) {
 }
 </code></pre>
 
-<p>RDD는 기본저긍로 action을 run할 때마다 recomputed 된다.
+<p>RDD는 기본적으로 action을 run할 때마다 recomputed 된다.
 이는 data가 많아질수록 expensive 해진다.</p>
 <blockquote>
 <p>Spark는 memory에 캐시를 컨트롤 할 수 있도록 지원해준다.
 RDD를 메모리에 캐시하기 위해선 <code>persist()</code> 혹은 <code>cache()</code>를 사용하면 된다.</p>
 </blockquote>
-<pre><code class="scala">val lastYearsLogs: RDDEString] = ...
+<pre><code class="scala">val lastYearsLogs: RDD[String] = ...
 val logsWithErrors = lastYearsLogs.filter(_.contains(&quot;ERROR&quot;))
   .persist()
 val firstLogsWithErrors = logsWithErrors.take(10)
@@ -362,12 +367,14 @@ val numErrors = logsWithErrors.count()
 firstLogsWithErrors를 계산할 때와 numErrors를 계산할 때 총 2번 계산 했어야 할 것이다.
 하지만 캐싱을 했기 때문에 한 번의 logsWithErrors 계산이 이루어진다.</p>
 <p>이를 위에 Logsitic Regression쪽에 적용하려면 points 선언 마지막에 .persist()를 추가해주면 된다.</p>
-<p>데이터를 persist하는 방법은 여러 가지가 있다.
-► in memory as regular Java objects
-► on disk as regular Java objects
-► in memory as serialized Java objects (more compact)
-► on disk as serialized Java objects (more compact)
-► both in memory and on disk (spill over to disk to avoid re-computation)</p>
+<p>데이터를 persist하는 방법은 여러 가지가 있다.</p>
+<ul>
+<li>in memory as regular Java objects</li>
+<li>on disk as regular Java objects</li>
+<li>in memory as serialized Java objects (more compact)</li>
+<li>on disk as serialized Java objects (more compact)</li>
+<li>both in memory and on disk (spill over to disk to avoid re-computation)</li>
+</ul>
 <p>cache()
 Shorthand for using the default storage level, which is in memory only as regular Java objects.</p>
 <p>persist()

@@ -67,9 +67,16 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#set">Set</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#read-file">Read File</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../my-spark/">My Spark</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Rust</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rust/01-start-rust/">01-start-rust</a>
                     </li>
                 </ul>
       </div>
@@ -123,6 +130,26 @@
     num &lt;- numsList
   } yield num
 )
+</code></pre>
+
+<h2 id="read-file">Read File</h2>
+<p>classpath 위치로 부터 파일 읽기</p>
+<pre><code class="scala">import scala.io.Source
+
+def getResourcePath(): String = {
+  val txtFile = Source.fromFile(&quot;src/main/resources/config.txt&quot;)
+  txtFile.getLines().take(1).toList.head
+}
+</code></pre>
+
+<p>resources폴더내 파일 읽기</p>
+<pre><code class="scala">import scala.io.Source
+
+Option(getClass.getResourceAsStream(&quot;myfile.dat&quot;)) match {
+  case None =&gt; sys.error(&quot;File is Empty&quot;)
+  case Some(resource) =&gt; Source.fromInputStream(resource).getLines().toList
+}
+
 </code></pre>
               
             </div>

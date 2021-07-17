@@ -8,16 +8,23 @@
   
   
   
-  <link rel="shortcut icon" href="/img/favicon.ico">
-  <title>sundicide</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>docker - sundicide</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="/css/theme.css" />
-  <link rel="stylesheet" href="/css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
-  <script src="/js/jquery-2.1.1.min.js" defer></script>
-  <script src="/js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "docker";
+    var mkdocs_page_input_path = "docker.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
@@ -33,9 +40,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="/." class="icon icon-home"> sundicide</a>
+        <a href=".." class="icon icon-home"> sundicide</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="//search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -43,27 +50,27 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="/.">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Scala</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/fpp-in-scala/">Coursera/fpp-in-scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/fpp-in-scala/">Coursera/fpp-in-scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/fpd-in-scala/">Coursera/fpd-in-scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/fpd-in-scala/">Coursera/fpd-in-scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/parallel-programming/">Coursera/parallel-programming</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/parallel-programming/">Coursera/parallel-programming</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/bigdata-analysis-with-scala-and-spark/">Coursera/bigdata-analysis-spark</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/bigdata-analysis-with-scala-and-spark/">Coursera/bigdata-analysis-spark</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/my-scala/">My Scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/my-scala/">My Scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/scala/my-spark/">My Spark</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../scala/my-spark/">My Spark</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Rust</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="/rust/01-start-rust/">01-start-rust</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../rust/01-start-rust/">01-start-rust</a>
                     </li>
                 </ul>
       </div>
@@ -75,7 +82,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="/.">sundicide</a>
+        <a href="..">sundicide</a>
       </nav>
 
       
@@ -83,9 +90,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="/.">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
+      
     
+    <li>docker</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -96,12 +105,24 @@
           <div role="main">
             <div class="section">
               
+                <h1 id="docker">docker</h1>
+<h2 id="ps-format">ps format</h2>
+<p>https://gist.github.com/wzulfikar/f6f7dc8b9d6aa5bc207eaa31913201d8</p>
+<h3 id="_1">영구 적용</h3>
+<pre><code class="bash">vi ~/.docker/config.json
+</code></pre>
 
-  <h1 id="404-page-not-found">404</h1>
+<pre><code class="json">{
+  &quot;psFormat&quot;: &quot;ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n&quot;
+}
+</code></pre>
 
-  <p><strong>Page not found</strong></p>
+<h3 id="_2">일시 적용</h3>
+<pre><code class="bash">export FORMAT=&quot;...&quot;
 
-
+docker ps --format=&quot;$FORMAT&quot;
+</code></pre>
+              
             </div>
           </div>
           <footer>
@@ -131,9 +152,9 @@
       
     </span>
 </div>
-    <script>var base_url = '/';</script>
-    <script src="/js/theme.js" defer></script>
-      <script src="/search/main.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
