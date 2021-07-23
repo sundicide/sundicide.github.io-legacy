@@ -203,34 +203,42 @@
 <p>스칼라로 구현된 Spark는 leveraging 함으로서 scale up 하기 쉽게 해준다.
 Spark는 large-scale data processing framework이다.</p>
 <p>Hadoop도 좋은 선택이다.
-Spark는
-- more expressive 하다. flatMap filter등 다양한 collection 함수를 쓸 수 있다.
-- Performant 하다.
-- Good for data science. iteration을 가능하게 해준다. Hadoop은 이를 구현하기 힘들다.</p>
+Spark는</p>
+<ul>
+<li>more expressive 하다. flatMap filter등 다양한 collection 함수를 쓸 수 있다.</li>
+<li>Performant 하다.</li>
+<li>Good for data science. iteration을 가능하게 해준다. Hadoop은 이를 구현하기 힘들다.</li>
+</ul>
 <p>Distributed data parallelism은 Shared Memory data parallelism과 다르다.</p>
-<p>Shared Memory
-- Split the data
-- Workkers/threads independently operate on the data shards in parallel.
-- Combine when done (if necessary)</p>
-<p>Distributed
-- Split the data <strong>over several nodes.</strong>
-- Nodes independently operate on the data shards in parallel.
-- Combine when done (if necessary)</p>
-<p>하지만 network latency between workers를 걱정해야 한다.
+<p>Shared Memory</p>
+<ul>
+<li>Split the data</li>
+<li>Workers/threads independently operate on the data shards in parallel.</li>
+<li>Combine when done (if necessary)</li>
+</ul>
+<p>Distributed</p>
+<ul>
+<li>Split the data <strong>over several nodes.</strong></li>
+<li>Nodes independently operate on the data shards in parallel.</li>
+<li>Combine when done (if necessary)</li>
+</ul>
+<p>하지만 network latency between workers를 걱정해야 한다.<br />
 Distributed data parallelism을 사용함으로서 collections abstraction을 유지할 수 있다.</p>
-<p>Apache Spark는 distributed data-parallel programming을 위한 framework이다.
+<p>Apache Spark는 distributed data-parallel programming을 위한 framework이다.<br />
 Spark는 Resilient Distributed Datasets(RDDs)라고 불리는 distributed data parallel model을 implelments한다.</p>
 <p>이전에 배웠던 parallel들은 1 machine 내에서 single multicore / multi-processor를 이용한 Data parallelism이었다.
 이제는 이를 Multiple machine으로 확장한다.</p>
-<p>이로 인해 고려해야 할 사항들이 있다.
-- Partial Failure
-- Latency
-Spark는 이 2가지 이슈를 잘 해결해준다.</p>
+<p>이로 인해 고려해야 할 사항들이 있다.</p>
+<ul>
+<li>Partial Failure</li>
+<li>Latency
+Spark는 이 2가지 이슈를 잘 해결해준다.</li>
+</ul>
 <p><img alt="" src="../important%20latency%20numbers.jpg" /></p>
 <p>Spark는 fault-tolerance와 handling latency를 functional programming 방식으로 해결한다.</p>
-<p>Idea: Keep all data immutable and in-memory. All operations on data are just functional transformations, like regular Scala collections. Fault tolerance is achieved by replaying functional transformations over original dataset.
-Result: Spark has been shown to be l00x more performant than Hadoop, while adding even more expressive APls.</p>
-<p>RDD는 immutable sequential 혹은 parallel Scala collections와 유사하다.
+<p><strong>Idea</strong>: Keep all data immutable and in-memory. All operations on data are just functional transformations, like regular Scala collections. Fault tolerance is achieved by replaying functional transformations over original dataset.<br />
+<strong>Result</strong>: Spark has been shown to be l00x more performant than Hadoop, while adding even more expressive APls.</p>
+<p>RDD는 immutable sequential 혹은 parallel Scala collections와 유사하다.<br />
 다음과 같은 Combinators를 제공한다.</p>
 <ul>
 <li>map</li>
@@ -245,31 +253,27 @@ Result: Spark has been shown to be l00x more performant than Hadoop, while addin
 <li>Transforming an existing RDD</li>
 <li>From a SparkContext (or SparkSession) object.</li>
 </ol>
-<p>Scala의 collections에는 transformer와 accessors가 있다.</p>
-<p>Transformer: Return new collections as results
+<p>Scala의 collections에는 Transformer와 Accessors가 있다.</p>
+<p><code>Transformer</code>: Return new collections as results
 e.g. map, filter, flatMap, groupBy</p>
 <pre><code class="scala">map(f: A =&gt; B): Traversable[B]
 </code></pre>
 
-<p>Accessor: Return single values as results
+<p><code>Accessor</code>: Return single values as results
 e.g. reduce, fold, aggregate.</p>
 <pre><code class="scala">reduce(op: (A, A) =&gt; A): A
 </code></pre>
 
-<p>이와 유사하게 Spark에서는 RDD에 transformation과 actions를 정의한다.
+<p>이와 유사하게 Spark에서는 RDD에 Transformation과 Actions를 정의한다.
 Transformations는 lazy하고 actions는 eager하다는 것을 반드시 기억해야 한다.</p>
 <p>Transformations: Return new <em>RDDs</em> as results.</p>
-<blockquote>
-<p>They are lazy, their result RDD is not immediately computed.</p>
-</blockquote>
+<pre><code>They are lazy, their result RDD is not immediately computed.
+</code></pre>
 <p>Actions: Compute a result based on an RDD, and either returned or saved to an external storage system (e.g. HDFS).</p>
-<blockquote>
-<p>They are eager, their result is immediately computed.</p>
-</blockquote>
-<p>이게 중요한 이유는 다음과 같다.</p>
-<blockquote>
-<p>Laziness/eagerness is how we can limit network communication using the programming model.</p>
-</blockquote>
+<pre><code>They are eager, their result is immediately computed.
+</code></pre>
+<p>이게 중요한 이유는 다음과 같다.
+    Laziness/eagerness is how we can limit network communication using the programming model.</p>
 <p>아래의 예를 살펴보자
 여기에서 sc는 SparkContext를 의미한다.</p>
 <pre><code class="scala">val largelist: List[String] = ...
