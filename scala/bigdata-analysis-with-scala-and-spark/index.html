@@ -77,7 +77,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#transformations-on-two-rdds">Transformations on Two RDDs</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#other-useful-rod-actions">Other Useful ROD Actions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#other-useful-rdd-actions">Other Useful RDD Actions</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#why-is-spark-good-for-data-science">Why is Spark Good for Data Science?</a>
     </li>
@@ -105,7 +105,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#weel4">Weel4</a>
+    <li class="toctree-l2"><a class="reference internal" href="#week4">Week4</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#spark-sql">Spark SQL</a>
         <ul>
@@ -331,7 +331,7 @@ Two-RDD transformations combine two RDDs are combined into one.</p>
 <li>subtract: <code>subtract(other: RDD[T]): RDD[T]</code></li>
 <li>cartesian: <code>cartesian[U](other: RDD[U]): RDD[(T, U)]</code> / 다른 RDD와의 Cartesian product 를 리턴한다</li>
 </ul>
-<h3 id="other-useful-rod-actions">Other Useful ROD Actions</h3>
+<h3 id="other-useful-rdd-actions">Other Useful RDD Actions</h3>
 <p>Scala collections에는 존재하지 않는 Spark에만 존재하는 분산 처리에 장점이 있는 actions도 있다
 아래의 함수들은 반환타입이 RDD가 아니기때문에 actions이다. = Eager하다.</p>
 <ul>
@@ -341,7 +341,7 @@ Two-RDD transformations combine two RDDs are combined into one.</p>
 <li>saveAsSequenceFile: <code>saveAsSequenceFile(path: String): Unit</code> / Write the elements of the dataset as a Hadoop Se­quenceFile in the local filesystem or HDFS.</li>
 </ul>
 <h3 id="why-is-spark-good-for-data-science">Why is Spark Good for Data Science?</h3>
-<p>대부분의 data science probles는 iteration을 포함한다.</p>
+<p>대부분의 data science problems는 iteration을 포함한다.</p>
 <p><img alt="" src="../iteration%20and%20big%20data%20processing.png" /></p>
 <p>위 그림에서 위쪽은 Hadoop, 아래쪽은 Spark이다.
 보면 알 수 있듯이 Iteration이 일어날때마다 Hadoop은 IO 타임이 증가하는 반면 Spark에서는 memory computation으로써 IO time을 줄였다.</p>
@@ -471,18 +471,21 @@ Despite similar-looking API to Scala Collections, the deferred semantics of Spar
 </code></pre>
 
 <h2 id="week2">Week2</h2>
-<p>distributed Spark에서 reduce 같이
-Reduction Operation이란 무엇인가?
-- foldLeft, reduceRight 등과 같이
-- collection을 순환하면서
-- neighboring element를 combine 하면서
-- collection together를 해서
-- single element result를 만들어 내는 것이다.</p>
-<p>Spark에 RDD에 적용할 수 있는 Reduction Operations는 아래와 같다.
-1. fold
-2. reduce
-3. aggregate
-만약 reduction을 하면서 리턴 타입을 바꾸고 싶다면 aggregate를 사용해야 한다.</p>
+<p>distributed Spark에서 reduce 같이 Reduction Operation이란 무엇인가?</p>
+<ul>
+<li>foldLeft, reduceRight 등과 같이</li>
+<li>collection을 순환하면서</li>
+<li>neighboring element를 combine 하면서</li>
+<li>collection together를 해서</li>
+<li>single element result를 만들어 내는 것이다.</li>
+</ul>
+<p>Spark에 RDD에 적용할 수 있는 Reduction Operations는 아래와 같다.</p>
+<ol>
+<li>fold</li>
+<li>reduce</li>
+<li>aggregate
+만약 reduction을 하면서 리턴 타입을 바꾸고 싶다면 aggregate를 사용해야 한다.</li>
+</ol>
 <p>foldLeft와 foldRight은 불가능하다.
 만약 순차적으로 처리해서 이를 구현할 수 있지 않을까?
 라는 생각이 들수도 있지만 distributed system에서 어떤 일을 순차적으로 처리 한다는 것은 힘들다.</p>
@@ -505,15 +508,19 @@ val pairRdd = rdd.map(page =&gt; (page.title, page.text))
 
 <p>위와 같이 pairRdd를 만들면 groupByKey, reduceByKey, join을 사용할 수 있다.</p>
 <h3 id="some-interesting-pair-rdds-operations">Some interesting Pair RDDs operations</h3>
-<p>Transformations(=Lazy)
-- groupByKey
-- reduceByKey
-- mapValues
-- keys
-- join
-- leftOuterJoin / rightOuterJoin</p>
-<p>Action(=Eager)
-- countByKey</p>
+<p>Transformations(=Lazy)</p>
+<ul>
+<li>groupByKey</li>
+<li>reduceByKey</li>
+<li>mapValues</li>
+<li>keys</li>
+<li>join</li>
+<li>leftOuterJoin / rightOuterJoin</li>
+</ul>
+<p>Action(=Eager)</p>
+<ul>
+<li>countByKey</li>
+</ul>
 <pre><code class="scala">val ages = List(2, 52, 44, 23, 17, 14, 12, 82, 51 , 64)
 val grouped = ages.groupBy {
   age =&gt;
@@ -541,9 +548,11 @@ groupedRdd.collect().foreach(println)
 // (Prime Sound,CompactBuffer(42000))
 </code></pre>
 
-<p>reduceByKey 예시)
-- reduceByKey는 groupByKey를 하고 reduce를 하는 것보다 more efficient하다.
-- key에는 관심이 없고 value에만 operate한다.</p>
+<p>reduceByKey 예시)</p>
+<ul>
+<li>reduceByKey는 groupByKey를 하고 reduce를 하는 것보다 more efficient하다.</li>
+<li>key에는 관심이 없고 value에만 operate한다.</li>
+</ul>
 <pre><code class="scala">case class Event(organizer: String, name: String, budget: Int)
 
 val eventsRdd = sc.parallelize(...)
@@ -585,9 +594,11 @@ avgBudgets.collect().foreach(println)
 // (Association Balelec,50000)
 </code></pre>
 
-<p>keys 예시)
-- keys (def keys: RDD[K]) Return an RDD with the keys of each tuple.
-- Transformation이다. = RDD를 리턴한다.</p>
+<p>keys 예시)</p>
+<ul>
+<li>keys (def keys: RDD[K]) Return an RDD with the keys of each tuple.</li>
+<li>Transformation이다. = RDD를 리턴한다.</li>
+</ul>
 <pre><code class="scala">case class Visitor(ip: String, timestamp: String, duration: String)
 
 val visits: RDD[Visitor] = sc.textfile(...)
@@ -708,15 +719,17 @@ val purchasesPerMonth =
     .collect()
 </code></pre>
 
-<p><img alt="" src="../shuffle%20data%20across%20network.png" />
+<p><img alt="" src="../shuffle%20data%20across%20network%20-%20optimized.png" />
 위 그림처럼 network를 통하기 전에 먼저 reduce를 해서 더 효율적이다.(더 적게 주고받기 때문)</p>
 <p>그렇다면 Spark는 어떻게 data를 partitioning(필요한 machine에 데이터를 보내는 것) 할까?
 다음 부터 알아보자</p>
 <p>Partitioning은 key base이기 때문에 <code>pair RDD</code>에서만 동작한다.
 number of partitions는 configurable하며 기본은 total number of cores on all executor nodes이다.</p>
-<p>Spark에서 가능한 partitioning은 2가지가 있다
-1. Hash partitioning
-2. Range partitioning</p>
+<p>Spark에서 가능한 partitioning은 2가지가 있다</p>
+<ol>
+<li>Hash partitioning</li>
+<li>Range partitioning</li>
+</ol>
 <h3 id="hash-partitioning">Hash partitioning</h3>
 <pre><code class="scala">val purchasesPerCust =
   purchasesRdd
@@ -911,7 +924,7 @@ val pairs = wordsRdd.map(c =&gt; (c, 1))
 </code></pre>
 
 <p>Recomputing missing partitions fast for narrow dependencies. But slow for wide dependencies!</p>
-<h2 id="weel4">Weel4</h2>
+<h2 id="week4">Week4</h2>
 <p>똑같은 결과가 나오는 코드이더라도 어떻게 수행하느냐에 따라 runtime이 확연하게 차이난다.</p>
 <ul>
 <li>Case1: innerjoin first</li>
@@ -960,14 +973,18 @@ cartesian.filter {
 하지만 DB와 같이 structured data의 경우에는 Spark가 데이터 구조를 알 수 있고 예측할 수 있기에 aggressive optimization이 가능하다.
 =&gt; <code>Spark SQL</code>이 이를 가능하게 해준다.!</p>
 <h3 id="spark-sql">Spark SQL</h3>
-<p>Spark SQL의 goal은
-1. Spark programs(on RDD)와 external data source with a friendly API 간의 relational processing을 지원하는 것이다.
-2. database를 research하는데 high performance를 발휘한다.
-3. semi-structured data와 external databases를 easily support 한다.</p>
-<p>Spark SQL은 Spark의 라이브러리 중 하나로써 3개의 main API가 있다.
-- SQL literal syntax
-- DataFrames
-- Datasets</p>
+<p>Spark SQL의 goal은</p>
+<ol>
+<li>Spark programs(on RDD)와 external data source with a friendly API 간의 relational processing을 지원하는 것이다.</li>
+<li>database를 research하는데 high performance를 발휘한다.</li>
+<li>semi-structured data와 external databases를 easily support 한다.</li>
+</ol>
+<p>Spark SQL은 Spark의 라이브러리 중 하나로써 3개의 main API가 있다.</p>
+<ul>
+<li>SQL literal syntax</li>
+<li>DataFrames</li>
+<li>Datasets</li>
+</ul>
 <p>또한 2개의 특별한 backend component가 있다.
 - Catalyst, query optimizer
 - Tungsten, off-heap serializer</p>
@@ -1052,11 +1069,13 @@ For example, to read in data and infer a schema from a JSON file:</p>
 val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)
 </code></pre>
 
-<p>Semi-structured/Structured data sources Spark SQL can directly create DataFrames from:
-- JSON
-- CSV
-- Parquet
-- JDBC</p>
+<p>Semi-structured/Structured data sources Spark SQL can directly create DataFrames from:</p>
+<ul>
+<li>JSON</li>
+<li>CSV</li>
+<li>Parquet</li>
+<li>JDBC</li>
+</ul>
 <p>To see a list of all available methods for directly reading in semi-structured/structured data, see the latest API docs for DataFrameReader: http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrameReader</p>
 <h4 id="sql-literals">SQL Literals</h4>
 <p>DataFrame이 만들어 졌으면 이제 dataset에 SQL syntax를 사용할 수 있다.</p>
@@ -1154,14 +1173,16 @@ def join(right: DataFrame): DataFrame // simplified
 </code></pre>
 
 <p>Other transformations include: filter, limit, orderBy, where, as, sort, union, drop, amongst others.</p>
-<p>You can select and work with columns in three ways:
-1. Using $-notation
+<p>You can select and work with columns in three ways:</p>
+<ol>
+<li>Using $-notation
   // $-notation requires: import spark.implicits._
-  <code>df.filter($"age" &gt; 18)</code>
-2. Referring to the Dataframe
-  <code>df.filter(df("age")&gt; 18))</code>
-3. Using SQL query string
-  <code>df.filter("age &gt; 18")</code></p>
+  <code>df.filter($"age" &gt; 18)</code></li>
+<li>Referring to the Dataframe
+  <code>df.filter(df("age")&gt; 18))</code></li>
+<li>Using SQL query string
+  <code>df.filter("age &gt; 18")</code></li>
+</ol>
 <pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
 
 val employeeDF = sc.parallelize(...).toDF
@@ -1248,10 +1269,12 @@ In these cases it's often desirable to do one of the following:</p>
 <li>drop rows/records with unwanted values like null or "NaN"</li>
 <li>replace certain values with a constant</li>
 </ul>
-<p>Dropping records with unwanted values:
-- drop() drops rows that contain null or NaN values in any column and returns a new DataFrame.
-- drop("all") drops rows that contain null or NaN values in all columns and returns a new DataFrame.
-- drop(Array("id", "name")) drops rows that contain null or NaN values in the specified columns and returns a new DataFrame.</p>
+<p>Dropping records with unwanted values:</p>
+<ul>
+<li>drop() drops rows that contain null or NaN values in any column and returns a new DataFrame.</li>
+<li>drop("all") drops rows that contain null or NaN values in all columns and returns a new DataFrame.</li>
+<li>drop(Array("id", "name")) drops rows that contain null or NaN values in the specified columns and returns a new DataFrame.</li>
+</ul>
 <p>Replacing unwanted values:
 - <code>fill(0)</code> replaces all occurrences of null or NaN in numeric columns with specified value and returns a new DataFrame.
 - <code>fill(Map("minBalance" -&gt; 0))</code> replaces all occurrences of null or NaN in specified column with specified value and returns a new DataFrame.
@@ -1464,8 +1487,10 @@ The Dataset API includes both untyped and typed transformations.</p>
 <li><strong>untyped transformations</strong> the transformations we learned on DataFrames.</li>
 <li><strong>typed transformations</strong> typed variants of many DataFrame transformations + additional transformations such as RDD-like higher-order functions map, flatMap, etc.</li>
 </ul>
-<p>These APls are integrated. You can call a map on a DataFrame and get back a Dataset, for example.
-- Caveat: not every operation you know from RDDs are available on Datasets, and not all operations look 100% the same on Datasets as they did on RDDs.</p>
+<p>These APls are integrated. You can call a map on a DataFrame and get back a Dataset, for example.</p>
+<ul>
+<li>Caveat: not every operation you know from RDDs are available on Datasets, and not all operations look 100% the same on Datasets as they did on RDDs.</li>
+</ul>
 <p>But remember, you may have to explicitly provide type information when going from a DataFrame to a Dataset via typed transformations.</p>
 <pre><code class="scala">val keyValuesDF = List((3, &quot;Me&quot;), (1, &quot;Thi&quot;), (2, &quot;Se&quot;), (3, &quot;ssa&quot;) (3, &quot;-&quot;)), (2, &quot;cre&quot;) (2, &quot;t&quot;)).toDF
 val res = keyValuesDF.map(row =&gt; row(0).asinstanceOf[Int] + 1) // Ew...
@@ -1604,18 +1629,24 @@ They're required by all Datasets!</p>
 <li>Requires Semi-Structured/Structured Data</li>
 </ul>
 <h3 id="when-to-use-datasets-vs-dataframes-vs-rdds">When to use Datasets vs DataFrames vs RDDs?</h3>
-<p>Use Datasets when...
-- you have structured / semi-structured data
-- you want typesafety
-- you need to work with functional APls
-- you need good performance, but it doesn't have to be the best</p>
-<p>Use DataFrames when...
-- you have structured / semi-structured data
-- you want the best possible performance, automatically optimized for you</p>
-<p>Use RDDs when...
-- you have unstructured data
-- you need to fine-tune and manage low-level details of ROD computations
-- you have complex data types that cannot be serialized with Encoders</p>
+<p>Use Datasets when...</p>
+<ul>
+<li>you have structured / semi-structured data</li>
+<li>you want typesafety</li>
+<li>you need to work with functional APls</li>
+<li>you need good performance, but it doesn't have to be the best</li>
+</ul>
+<p>Use DataFrames when...</p>
+<ul>
+<li>you have structured / semi-structured data</li>
+<li>you want the best possible performance, automatically optimized for you</li>
+</ul>
+<p>Use RDDs when...</p>
+<ul>
+<li>you have unstructured data</li>
+<li>you need to fine-tune and manage low-level details of ROD computations</li>
+<li>you have complex data types that cannot be serialized with Encoders</li>
+</ul>
               
             </div>
           </div>
