@@ -8,13 +8,13 @@
   
   
   
-  <link rel="shortcut icon" href="../img/favicon.ico">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Coursera/bigdata-analysis-spark - sundicide</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -23,12 +23,13 @@
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/scala.min.js"></script>
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -39,32 +40,36 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="icon icon-home"> sundicide</a>
+        <a href="../.." class="icon icon-home"> sundicide</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../docker.html">Docker</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../docker/">Docker</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../postman/">Postman</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Scala</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="fpp-in-scala.html">Coursera/fpp-in-scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../fpp-in-scala/">Coursera/fpp-in-scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="fpd-in-scala.html">Coursera/fpd-in-scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../fpd-in-scala/">Coursera/fpd-in-scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="parallel-programming.html">Coursera/parallel-programming</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel-programming/">Coursera/parallel-programming</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="bigdata-analysis-with-scala-and-spark.html">Coursera/bigdata-analysis-spark</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Coursera/bigdata-analysis-spark</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#week1">Week1</a>
         <ul>
@@ -76,7 +81,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#transformations-on-two-rdds">Transformations on Two RDDs</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#other-useful-rod-actions">Other Useful ROD Actions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#other-useful-rdd-actions">Other Useful RDD Actions</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#why-is-spark-good-for-data-science">Why is Spark Good for Data Science?</a>
     </li>
@@ -104,7 +109,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#weel4">Weel4</a>
+    <li class="toctree-l2"><a class="reference internal" href="#week4">Week4</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#spark-sql">Spark SQL</a>
         <ul>
@@ -150,16 +155,16 @@
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="my-scala.html">My Scala</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../my-scala/">My Scala</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="my-spark.html">My Spark</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../my-spark/">My Spark</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Rust</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../rust/01-start-rust.html">01-start-rust</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rust/01-start-rust/">01-start-rust</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../rust/02-rust-program-structure.html">02-start-rust</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rust/02-rust-program-structure/">02-start-rust</a>
                     </li>
                 </ul>
       </div>
@@ -171,7 +176,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">sundicide</a>
+        <a href="../..">sundicide</a>
       </nav>
 
       
@@ -179,7 +184,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
       
         
@@ -195,7 +200,6 @@
   
   <hr/>
 </div>
-
           <div role="main">
             <div class="section">
               
@@ -236,7 +240,7 @@ Spark는 Resilient Distributed Datasets(RDDs)라고 불리는 distributed data p
 <li>Latency
 Spark는 이 2가지 이슈를 잘 해결해준다.</li>
 </ul>
-<p><img alt="" src="important%20latency%20numbers.jpg" /></p>
+<p><img alt="" src="../important%20latency%20numbers.jpg" /></p>
 <p>Spark는 fault-tolerance와 handling latency를 functional programming 방식으로 해결한다.</p>
 <p><strong>Idea</strong>: Keep all data immutable and in-memory. All operations on data are just functional transformations, like regular Scala collections. Fault tolerance is achieved by replaying functional transformations over original dataset.<br />
 <strong>Result</strong>: Spark has been shown to be l00x more performant than Hadoop, while adding even more expressive APls.</p>
@@ -258,12 +262,14 @@ Spark는 이 2가지 이슈를 잘 해결해준다.</li>
 <p>Scala의 collections에는 Transformer와 Accessors가 있다.</p>
 <p><code>Transformer</code>: Return new collections as results
 e.g. map, filter, flatMap, groupBy</p>
-<pre><code class="language-scala">map(f: A =&gt; B): Traversable[B]
+<pre><code class="scala">map(f: A =&gt; B): Traversable[B]
 </code></pre>
+
 <p><code>Accessor</code>: Return single values as results
 e.g. reduce, fold, aggregate.</p>
-<pre><code class="language-scala">reduce(op: (A, A) =&gt; A): A
+<pre><code class="scala">reduce(op: (A, A) =&gt; A): A
 </code></pre>
+
 <p>이와 유사하게 Spark에서는 RDD에 Transformation과 Actions를 정의한다.
 Transformations는 lazy하고 actions는 eager하다는 것을 반드시 기억해야 한다.</p>
 <p>Transformations: Return new <em>RDDs</em> as results.</p>
@@ -276,11 +282,12 @@ Transformations는 lazy하고 actions는 eager하다는 것을 반드시 기억�
     Laziness/eagerness is how we can limit network communication using the programming model.</p>
 <p>아래의 예를 살펴보자
 여기에서 sc는 SparkContext를 의미한다.</p>
-<pre><code class="language-scala">val largelist: List[String] = ...
+<pre><code class="scala">val largelist: List[String] = ...
 val wordsRdd = sc.parallelize(largelist)
 val lengthsRdd = wordsRdd.map(_.length)
 val totalChars = lengthsRdd.reduce(_ + _)
 </code></pre>
+
 <p>1,2,3번 째 줄의 코드까지 실행했을 때 cluster에는 어떤 변화가 일어날까?
 <code>답은 아무일도 일어나지 않는다</code> 이다.
 왜냐하면 이 것들은 모두 transfomrations이기 때문이다.
@@ -306,17 +313,19 @@ val totalChars = lengthsRdd.reduce(_ + _)
 </ul>
 <p>RDD[String]으로 이루어진 gigabytes의 log가 있다고 가정하다.
 그렇담 2016년 12월에 발생한 ERROR 로그의 개수는 어떻게 카운트 할까?</p>
-<pre><code class="language-scala">val lastYearslogs: RDD[String] = ...
+<pre><code class="scala">val lastYearslogs: RDD[String] = ...
 val numDecErrorlogs = lastYearslogs.filter(
     lg=&gt; lg.contains(&quot;2016-12&quot;) &amp;&amp; lg.contains(&quot;error&quot;)
   )
   .count()
 </code></pre>
+
 <p>이런 Laziness로 인해 얻을 수 있는 장점이 있다.</p>
-<pre><code class="language-scala">val lastYearslogs: RDD[String] = ...
+<pre><code class="scala">val lastYearslogs: RDD[String] = ...
 val firstlogsWithErrors = lastYearslogs.filter(_.contains(&quot;ERROR&quot;))
   .take(10)
 </code></pre>
+
 <p>위와 같이 10개만 취하려 할때 모든 데이터를 순회할 필요 없이 10개를 얻는 순간 종료를 할 수 있다.</p>
 <h3 id="transformations-on-two-rdds">Transformations on Two RDDs</h3>
 <p>RDDs also support set-like operations, like union and intersection.
@@ -328,7 +337,7 @@ Two-RDD transformations combine two RDDs are combined into one.</p>
 <li>subtract: <code>subtract(other: RDD[T]): RDD[T]</code></li>
 <li>cartesian: <code>cartesian[U](other: RDD[U]): RDD[(T, U)]</code> / 다른 RDD와의 Cartesian product 를 리턴한다</li>
 </ul>
-<h3 id="other-useful-rod-actions">Other Useful ROD Actions</h3>
+<h3 id="other-useful-rdd-actions">Other Useful RDD Actions</h3>
 <p>Scala collections에는 존재하지 않는 Spark에만 존재하는 분산 처리에 장점이 있는 actions도 있다
 아래의 함수들은 반환타입이 RDD가 아니기때문에 actions이다. = Eager하다.</p>
 <ul>
@@ -338,14 +347,14 @@ Two-RDD transformations combine two RDDs are combined into one.</p>
 <li>saveAsSequenceFile: <code>saveAsSequenceFile(path: String): Unit</code> / Write the elements of the dataset as a Hadoop Se­quenceFile in the local filesystem or HDFS.</li>
 </ul>
 <h3 id="why-is-spark-good-for-data-science">Why is Spark Good for Data Science?</h3>
-<p>대부분의 data science probles는 iteration을 포함한다.</p>
-<p><img alt="" src="iteration%20and%20big%20data%20processing.png" /></p>
+<p>대부분의 data science problems는 iteration을 포함한다.</p>
+<p><img alt="" src="../iteration%20and%20big%20data%20processing.png" /></p>
 <p>위 그림에서 위쪽은 Hadoop, 아래쪽은 Spark이다.
 보면 알 수 있듯이 Iteration이 일어날때마다 Hadoop은 IO 타임이 증가하는 반면 Spark에서는 memory computation으로써 IO time을 줄였다.</p>
 <h3 id="iteration-example-logistic-regression">Iteration, Example: Logistic Regression</h3>
 <p>Logistic regression은 classification을 위한 iterative algorithm이다.
 다른 classification algorithms와 같이 classifier's weights는 training dataset에 기반하여 반복적으로 업데이트 된다.</p>
-<pre><code class="language-scala">val points = sc.textFile(...).map(parsePoint)
+<pre><code class="scala">val points = sc.textFile(...).map(parsePoint)
 var w = Vector.zeros(d)
 for (i &lt;- 1 to numIterations) {
   val gradients = points.map { p =&gt;
@@ -354,18 +363,20 @@ for (i &lt;- 1 to numIterations) {
   w = -= alpha * gradient
 }
 </code></pre>
+
 <p>RDD는 기본적으로 action을 run할 때마다 recomputed 된다.
 이는 data가 많아질수록 expensive 해진다.</p>
 <blockquote>
 <p>Spark는 memory에 캐시를 컨트롤 할 수 있도록 지원해준다.
 RDD를 메모리에 캐시하기 위해선 <code>persist()</code> 혹은 <code>cache()</code>를 사용하면 된다.</p>
 </blockquote>
-<pre><code class="language-scala">val lastYearsLogs: RDD[String] = ...
+<pre><code class="scala">val lastYearsLogs: RDD[String] = ...
 val logsWithErrors = lastYearsLogs.filter(_.contains(&quot;ERROR&quot;))
   .persist()
 val firstLogsWithErrors = logsWithErrors.take(10)
 val numErrors = logsWithErrors.count()
 </code></pre>
+
 <p>만약 logsWithErrors에 persist를 추가하지 않았더라면(캐싱하지 않았더라면)
 firstLogsWithErrors를 계산할 때와 numErrors를 계산할 때 총 2번 계산 했어야 할 것이다.
 하지만 캐싱을 했기 때문에 한 번의 logsWithErrors 계산이 이루어진다.</p>
@@ -382,7 +393,7 @@ firstLogsWithErrors를 계산할 때와 numErrors를 계산할 때 총 2번 계�
 Shorthand for using the default storage level, which is in memory only as regular Java objects.</p>
 <p>persist()
 Persistence can be customized with this method. Pass the storage level you’d like as a parameter to persist.</p>
-<p><img alt="" src="caching%20and%20persistence.png" /></p>
+<p><img alt="" src="../caching%20and%20persistence.png" /></p>
 <blockquote>
 <p>Key takeway:
 Despite similar-looking API to Scala Collections, the deferred semantics of Spark's RDDs are very unlike Scala Collections.</p>
@@ -390,7 +401,7 @@ Despite similar-looking API to Scala Collections, the deferred semantics of Spar
 <p>One of the most common performance bottlenecks of newcomers to Spark arises from unknowingly reevaluating several transformations when caching could be used.</p>
 <p>Spark는 Lazy를 발견하면 어떻게 하면 optimization할 수 있을지 analyze한다.</p>
 <h3 id="excerciese">Excerciese</h3>
-<pre><code class="language-scala">object WikipediaRanking extends WikipediaRankingInterface {
+<pre><code class="scala">object WikipediaRanking extends WikipediaRankingInterface {
 
   val langs = List(
     &quot;JavaScript&quot;, &quot;Java&quot;, &quot;PHP&quot;, &quot;Python&quot;, &quot;C#&quot;, &quot;C++&quot;, &quot;Ruby&quot;, &quot;CSS&quot;,
@@ -464,19 +475,23 @@ Despite similar-looking API to Scala Collections, the deferred semantics of Spar
       .toList
 }
 </code></pre>
+
 <h2 id="week2">Week2</h2>
-<p>distributed Spark에서 reduce 같이
-Reduction Operation이란 무엇인가?
-- foldLeft, reduceRight 등과 같이
-- collection을 순환하면서
-- neighboring element를 combine 하면서
-- collection together를 해서
-- single element result를 만들어 내는 것이다.</p>
-<p>Spark에 RDD에 적용할 수 있는 Reduction Operations는 아래와 같다.
-1. fold
-2. reduce
-3. aggregate
-만약 reduction을 하면서 리턴 타입을 바꾸고 싶다면 aggregate를 사용해야 한다.</p>
+<p>distributed Spark에서 reduce 같이 Reduction Operation이란 무엇인가?</p>
+<ul>
+<li>foldLeft, reduceRight 등과 같이</li>
+<li>collection을 순환하면서</li>
+<li>neighboring element를 combine 하면서</li>
+<li>collection together를 해서</li>
+<li>single element result를 만들어 내는 것이다.</li>
+</ul>
+<p>Spark에 RDD에 적용할 수 있는 Reduction Operations는 아래와 같다.</p>
+<ol>
+<li>fold</li>
+<li>reduce</li>
+<li>aggregate
+만약 reduction을 하면서 리턴 타입을 바꾸고 싶다면 aggregate를 사용해야 한다.</li>
+</ol>
 <p>foldLeft와 foldRight은 불가능하다.
 만약 순차적으로 처리해서 이를 구현할 수 있지 않을까?
 라는 생각이 들수도 있지만 distributed system에서 어떤 일을 순차적으로 처리 한다는 것은 힘들다.</p>
@@ -486,27 +501,33 @@ large-scale data를 다룰 때 data type을 줄이는 것은 중요하기 때문
 구글에서는 key-value pairs를 manipulating하기 위해 <code>MapReduce</code>를 디자인 했다.</p>
 <p>Spark에서는 distributed key-value pairs를 <code>Pair RDDs</code>라고 부른다.
 element type이 pair인 RDD가 만들어지면 Spark는 자동적으로 유용한 몇 가지 메소드들을 추가해준다.</p>
-<pre><code class="language-scala">def groupByKey(): RDD[(K, Iterable[V])]
+<pre><code class="scala">def groupByKey(): RDD[(K, Iterable[V])]
 def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]
 def join[W](other: RDD[(K, W)]): RDD[(K, (V, W))]
 </code></pre>
+
 <p>Pair RDD를 만드는 가장 자주쓰이는 방법은 이미 존재하는 non-pair RDD로 부터 만드는 것이다. RDD에 map operation을 적용하는 것이 예가 될 수 있다.</p>
-<pre><code class="language-scala">val rdd: RDD[WikipediaPage] =
+<pre><code class="scala">val rdd: RDD[WikipediaPage] =
 // Has type: org.apache.spark.rdd.RDDE(String, String)]
 val pairRdd = rdd.map(page =&gt; (page.title, page.text))
 </code></pre>
+
 <p>위와 같이 pairRdd를 만들면 groupByKey, reduceByKey, join을 사용할 수 있다.</p>
 <h3 id="some-interesting-pair-rdds-operations">Some interesting Pair RDDs operations</h3>
-<p>Transformations(=Lazy)
-- groupByKey
-- reduceByKey
-- mapValues
-- keys
-- join
-- leftOuterJoin / rightOuterJoin</p>
-<p>Action(=Eager)
-- countByKey</p>
-<pre><code class="language-scala">val ages = List(2, 52, 44, 23, 17, 14, 12, 82, 51 , 64)
+<p>Transformations(=Lazy)</p>
+<ul>
+<li>groupByKey</li>
+<li>reduceByKey</li>
+<li>mapValues</li>
+<li>keys</li>
+<li>join</li>
+<li>leftOuterJoin / rightOuterJoin</li>
+</ul>
+<p>Action(=Eager)</p>
+<ul>
+<li>countByKey</li>
+</ul>
+<pre><code class="scala">val ages = List(2, 52, 44, 23, 17, 14, 12, 82, 51 , 64)
 val grouped = ages.groupBy {
   age =&gt;
     if (age &gt;= 18 &amp;&amp; age &lt; 65) &quot;adult&quot;
@@ -517,8 +538,9 @@ val grouped = ages.groupBy {
 // Map(senior -&gt; List(82), adult -&gt; List(52, 44, 23, 51, 64),
 // child -&gt; List(2, 17, 14, 12))
 </code></pre>
+
 <p>gropuByKey 예시)</p>
-<pre><code class="language-scala">case class Event(organizer: String, name: String, budget: Int)
+<pre><code class="scala">case class Event(organizer: String, name: String, budget: Int)
 
 val eventsRdd = sc.parallelize(...)
   .map(event =&gt; (event.organizer, event.budget))
@@ -531,10 +553,13 @@ val groupedRdd = eventsRdd.groupByKey()
 groupedRdd.collect().foreach(println)
 // (Prime Sound,CompactBuffer(42000))
 </code></pre>
-<p>reduceByKey 예시)
-- reduceByKey는 groupByKey를 하고 reduce를 하는 것보다 more efficient하다.
-- key에는 관심이 없고 value에만 operate한다.</p>
-<pre><code class="language-scala">case class Event(organizer: String, name: String, budget: Int)
+
+<p>reduceByKey 예시)</p>
+<ul>
+<li>reduceByKey는 groupByKey를 하고 reduce를 하는 것보다 more efficient하다.</li>
+<li>key에는 관심이 없고 value에만 operate한다.</li>
+</ul>
+<pre><code class="scala">case class Event(organizer: String, name: String, budget: Int)
 
 val eventsRdd = sc.parallelize(...)
   .map(event =&gt; (event.organizer, event.budget))
@@ -547,17 +572,19 @@ reducedRdd.collect().foreach(println)
 // (Innotech,320000)
 // (Association Balelec,50000)
 </code></pre>
+
 <p>mapValues예시)</p>
-<pre><code class="language-scala">def mapValues[U](f: V =&gt; U): RDD[(K, U)]
+<pre><code class="scala">def mapValues[U](f: V =&gt; U): RDD[(K, U)]
 // 위의 정의는 아래와 같이 생각할 수 있다.
 
 rdd.map {
   case (x, y): (x, func(y))
 }
 </code></pre>
+
 <p><code>countByKey</code> (def countByKey(): Map[K, Long]) simply counts the number of elements per key in a Pair RDD, returning a normal Scala Map
 (remember, it’s an action!) mapping from keys to counts.</p>
-<pre><code class="language-scala">val intermediate =
+<pre><code class="scala">val intermediate =
   eventsRdd.mapValues(b =&gt; (b, 1))
     .reduceByKey((v1, v2) =&gt; (v1._1 + v2._1, v1._2 + v2._2))
 // intermediate: RDD[(String, (Int, Int))]
@@ -572,10 +599,13 @@ avgBudgets.collect().foreach(println)
 // (Innotech,106666)
 // (Association Balelec,50000)
 </code></pre>
-<p>keys 예시)
-- keys (def keys: RDD[K]) Return an RDD with the keys of each tuple.
-- Transformation이다. = RDD를 리턴한다.</p>
-<pre><code class="language-scala">case class Visitor(ip: String, timestamp: String, duration: String)
+
+<p>keys 예시)</p>
+<ul>
+<li>keys (def keys: RDD[K]) Return an RDD with the keys of each tuple.</li>
+<li>Transformation이다. = RDD를 리턴한다.</li>
+</ul>
+<pre><code class="scala">case class Visitor(ip: String, timestamp: String, duration: String)
 
 val visits: RDD[Visitor] = sc.textfile(...)
 
@@ -584,9 +614,10 @@ val visits: RDD[Visitor] = sc.textfile(...)
 val numllniqueVisits = visits.keys.distinct().count()
 // numllniqueVisits: Long = 3391
 </code></pre>
+
 <p>join도 pari RDD에만 적용가능하기 때문에 normal RDD에는 적용 불가능하다.
 join은 한 마디로 2개의 pair RDD를 1개의 pair RDD로 합치는 것이다.</p>
-<pre><code class="language-scala">val as = List(
+<pre><code class="scala">val as = List(
   (101, (&quot;Ruetli&quot;, AG)),
   (102, (&quot;Brelaz&quot;, DemiTarif)),
   (103, (&quot;Gress&quot;, DemiTarifVisa)),
@@ -605,9 +636,10 @@ val ls = List(
 )
 val locations = sc.parallelize(ls)
 </code></pre>
+
 <h3 id="inner-join">inner join</h3>
 <p>Inner joins return a new RDD containing combined pairs whose keys are present in both input RDDs.</p>
-<pre><code class="language-scala">val trackedCustomers = abos.join(locations)
+<pre><code class="scala">val trackedCustomers = abos.join(locations)
 // trackedCustomers: RDD[(Int, ((String, Abonnement), String))]
 
 trackedCustomers.collect().foreach(println)
@@ -620,14 +652,16 @@ trackedCustomers.collect().foreach(println)
 // (103,((Gress,DemiTarifVisa),Chur))
 // (103,((Gress,DemiTarifVisa),Zurich))
 </code></pre>
+
 <p>위의 예를 보면 as에서 104가 사라졌다.
 location에는 key 104가 없기 때문이다.</p>
 <h3 id="outer-join">Outer join</h3>
 <p>Outer joins return a new RDD containing combined pairs whose keys don’t have to be present in both input RDDs.</p>
-<pre><code class="language-scala">def leftOuterJoinEW](other: RDD[(K, W)]): RDD[(K, (V, OptionEW]))]
+<pre><code class="scala">def leftOuterJoinEW](other: RDD[(K, W)]): RDD[(K, (V, OptionEW]))]
 def rightOuterJoinEW](other: RDD[(K, W)]): RDD[(K, (Option[V], W))]
 </code></pre>
-<pre><code class="language-scala">val abosWithOptionalLocations = abos.leftOuterJoin(locations)
+
+<pre><code class="scala">val abosWithOptionalLocations = abos.leftOuterJoin(locations)
 
 abosWithOptionalLocations.collect().foreach(println)
 // (101,((Ruetli,AG),Some(Thun)))
@@ -640,7 +674,8 @@ abosWithOptionalLocations.collect().foreach(println)
 // (103,((Gress,DemiTarifVisa),Some(Chur)))
 // (104,((Schatten,DemiTarif),None))
 </code></pre>
-<pre><code class="language-scala">val customersWithLocationDataAndOptionalAbos = abos.rightOuterJoin(locations)
+
+<pre><code class="scala">val customersWithLocationDataAndOptionalAbos = abos.rightOuterJoin(locations)
 // RDD[(Int, (Option[(String, Abonnement)], String))]
 
 customersWithLocationDataAndOptionalAbos.collect().foreach(println)
@@ -653,9 +688,10 @@ customersWithLocationDataAndOptionalAbos.collect().foreach(println)
 // (103,(Some((Gress,DemiTarifVisa)),St-Gallen))
 // (103,(Some((Gress,DemiTarifVisa))，Chur))
 </code></pre>
+
 <h2 id="week3">Week3</h2>
 <p>Remember our data is distributed!</p>
-<pre><code class="language-scala">val pairs = sc.parallelize(
+<pre><code class="scala">val pairs = sc.parallelize(
   List(
     (1, &quot;one&quot;), (2, &quot;two&quot;), (3, &quot;three&quot;)
   )
@@ -664,10 +700,11 @@ pairs.groupByKey()
 // res2: org.apache.spark.rdd.RDD[(Int, Iterable[String])]
 //   = ShuffledRDD[16] at groupByKey at &lt;console&gt;:37
 </code></pre>
+
 <p>We typically have to move data from one node to another to be "grouped with" its key. Doing this is called "shuffling".</p>
 <p>Shuffles can be an enormous hit to because it means that Spark must send data from one node to another. Why? Latency!</p>
 <p>Goal: calculate how many trips, and how much money was spent by each individual customer over the course of the month.</p>
-<pre><code class="language-scala">val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile(...)
+<pre><code class="scala">val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile(...)
 
 // Returns: Array[(Int, (Int, Double))]
 val purchasesPerMonth =
@@ -677,30 +714,35 @@ val purchasesPerMonth =
     .map(p =&gt; (p._1, (p._2.size, p._2.sum)))
     .collect()
 </code></pre>
-<p><img alt="" src="shuffle%20data%20across%20network.png" />
+
+<p><img alt="" src="../shuffle%20data%20across%20network.png" />
 위의 그림에서 노란색 영역이 shuffle이 일어나는 곳이다.</p>
 <p>아래처럼 reduceByKey로 optimize할 수 있다.</p>
-<pre><code class="language-scala">val purchasesPerMonth =
+<pre><code class="scala">val purchasesPerMonth =
   purchasesRdd
     .map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
     .reduceByKey((v1, v2) =&gt; (v1._1 + v2._1, v1._2 + v2._2))
     .collect()
 </code></pre>
-<p><img alt="" src="shuffle%20data%20across%20network.png" />
+
+<p><img alt="" src="../shuffle%20data%20across%20network%20-%20optimized.png" />
 위 그림처럼 network를 통하기 전에 먼저 reduce를 해서 더 효율적이다.(더 적게 주고받기 때문)</p>
 <p>그렇다면 Spark는 어떻게 data를 partitioning(필요한 machine에 데이터를 보내는 것) 할까?
 다음 부터 알아보자</p>
 <p>Partitioning은 key base이기 때문에 <code>pair RDD</code>에서만 동작한다.
 number of partitions는 configurable하며 기본은 total number of cores on all executor nodes이다.</p>
-<p>Spark에서 가능한 partitioning은 2가지가 있다
-1. Hash partitioning
-2. Range partitioning</p>
+<p>Spark에서 가능한 partitioning은 2가지가 있다</p>
+<ol>
+<li>Hash partitioning</li>
+<li>Range partitioning</li>
+</ol>
 <h3 id="hash-partitioning">Hash partitioning</h3>
-<pre><code class="language-scala">val purchasesPerCust =
+<pre><code class="scala">val purchasesPerCust =
   purchasesRdd
     .map(p =&gt; (p.customerld, p.price)) // Pair RDD
     .groupByKey()
 </code></pre>
+
 <p>groupByKey first computes per tuple (k, v) its partition p:</p>
 <p>p = k.hashCode() % numPartitions</p>
 <p>Then, all tuples in the same partition p are sent to the machine hosting p.</p>
@@ -742,11 +784,12 @@ There are two ways to create RDDs with specific partitionings:</p>
 <li>Call partitionBy on an RDD, providing an explicit Partitioner.</li>
 <li>Using transformations that return RDDs with specific partitioners.</li>
 </ol>
-<pre><code class="language-scala">val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))
+<pre><code class="scala">val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))
 
 val tunedPartitioner = new RangePartitioner(8, pairs)
 val partitioned = pairs.partitionBy(tunedPartitioner).persist()
 </code></pre>
+
 <blockquote>
 <p>Important: the result of partitionBy should be persisted. Otherwise, the partitioning is repeatedly applied (involving shuffling!) each time the partitioned RDD is used.</p>
 </blockquote>
@@ -773,12 +816,13 @@ Some operations on RDDs automatically result in an RDD with a known partitioner 
 <p>All other operations will produce a result without a partitioner.</p>
 <p>map은 왜 lose the partitioner할까?
 왜냐하면 키를 바꿀수도 있기 때문이다.</p>
-<pre><code class="language-scala">rdd.map((k: String, v: Int)=&gt; (&quot;doh!&quot; v))
+<pre><code class="scala">rdd.map((k: String, v: Int)=&gt; (&quot;doh!&quot; v))
 </code></pre>
+
 <p>하지만 mapValues는 키를 바꾸지 않는다. = partitioner가 유지된다.</p>
 <p>=&gt; Pair RDD를 다룰 땐 mapValues를 사용하는 것을 최우선 고려해라.</p>
 <p>userData가 큰 데이터이고 events가 작은 데이터 일 때 아래 코드를 살펴보자.</p>
-<pre><code class="language-scala">val sc = new SparkContext(...)
+<pre><code class="scala">val sc = new SparkContext(...)
 val userData = sc.sequenceFile[UserID, Userlnfo](&quot;hdfs://...&quot;).persist()
 
 def processNewlogs(logFileName: String) {
@@ -790,13 +834,15 @@ def processNewlogs(logFileName: String) {
   println(''Number of visits to non-subscribed topics: '' + offTopicVisits)
 }
 </code></pre>
+
 <p>위와 같은 코드가 있을때 processNewlogs를 실행할 때마다 join이 불리기 때문에 keys가 dataset에 어떻게 partitioned 되어있는지 알 수 없다. =&gt; 비효율적이다.</p>
 <p>By default, this operation will hash all the keys of both datasets, sending elements with the same key hash across the network to the same machine, and then join together the elements with the same key on that machine. Even though userData doesn't change!</p>
 <p>그래서 아래와 같이 수정한다.</p>
-<pre><code class="language-scala">val userData = sc.sequenceFile[UserID, Userlnfo](&quot;hdfs://...&quot;)
+<pre><code class="scala">val userData = sc.sequenceFile[UserID, Userlnfo](&quot;hdfs://...&quot;)
   .partitionBy(new HashPartitioner(100)) // Create 100 partitions
   .persist()
 </code></pre>
+
 <p>Since we called partitionBy when building userData, Spark will now know that it is hash-partitioned, and calls to join on it will take advantage of this information.</p>
 <p>In particular, when we call userData.join(events), Spark will shuffle only the events ROD, sending events with each particular UserID to the machine that contains the corresponding hash partition of userData</p>
 <p>You can also figure out whether a shuffle has been planned/executed via:</p>
@@ -809,13 +855,14 @@ def processNewlogs(logFileName: String) {
 <p>Using function toDebugString to see its execution plan:</p>
 </li>
 </ol>
-<pre><code class="language-scala">
+<pre><code class="scala">
 partitioned
   .reduceByKey((v1, v2) =&gt; (v1._1 + v2._1, v1._2 + v2._2))
   .toDebugString
 
 // res9: String= (8) MapPartitionsRDD[l6221J at reduceByKey at &lt;console&gt;:49 []
 </code></pre>
+
 <p>shuffle을 유발하는 operations
 - cogroup
 - groupWith
@@ -851,17 +898,18 @@ Each partition of the parent RDD may be depended on by multiple child partitions
 Slow! Requires all or some data to be shuffled over the network.</p>
 </li>
 </ul>
-<p><img alt="" src="narrow%20vs%20wide%20dependences.png" /></p>
+<p><img alt="" src="../narrow%20vs%20wide%20dependences.png" /></p>
 <p>어떻게 dependencies를 볼 수 있을까?</p>
 <p>dependencies method on RDDs.</p>
 <p>dependencies returns a sequence of Dependency objects, which are actually the dependencies used by Spark’s sched나ler to know how this RDD depends on other RDDs.</p>
-<pre><code class="language-scala">val wordsRdd = sc.parallelize(largeList)
+<pre><code class="scala">val wordsRdd = sc.parallelize(largeList)
 val pairs = wordsRdd.map(c =&gt; (c, 1))
   .groupByKey()
   .dependencies
 // pairs: SeqEorg.apache.spark.Dependency
 // List(org.apache.spark.ShuffleDependency@4294a23d)
 </code></pre>
+
 <p>Narrow dependency objects:
 ► OneToOneDependency
 ► PruneDependency
@@ -871,7 +919,7 @@ val pairs = wordsRdd.map(c =&gt; (c, 1))
 <p>2번째 방법</p>
 <p>toDebugString method on RDDs.</p>
 <p>toDebugString prints out a visualization of the RDD’s lineage, and other information pertinent to scheduling. For example, indentations in the output separate groups of narrow transformations that may be pipelined together with wide transformations that require shuffles. These groupings are called stages.</p>
-<pre><code class="language-scala">val wordsRdd = sc.parallelize(largeList)
+<pre><code class="scala">val wordsRdd = sc.parallelize(largeList)
 val pairs = wordsRdd.map(c =&gt; (c, 1))
   .groupByKey()
   .toDebugString
@@ -880,32 +928,35 @@ val pairs = wordsRdd.map(c =&gt; (c, 1))
 // +-(8) MapPartitionsRDD[218] at map at &lt;console&gt;:37 []
 //    | ParallelCollectionRDD[217] at parallelize at &lt;console&gt;:36 []
 </code></pre>
+
 <p>Recomputing missing partitions fast for narrow dependencies. But slow for wide dependencies!</p>
-<h2 id="weel4">Weel4</h2>
+<h2 id="week4">Week4</h2>
 <p>똑같은 결과가 나오는 코드이더라도 어떻게 수행하느냐에 따라 runtime이 확연하게 차이난다.</p>
 <ul>
 <li>Case1: innerjoin first</li>
 </ul>
-<pre><code class="language-scala">demographics.join(finances).filter { p =&gt;
+<pre><code class="scala">demographics.join(finances).filter { p =&gt;
   p._2._1.country == &quot;Switzerland&quot; &amp;&amp;
   p._2._2.hasFinancialDependents &amp;&amp;
   p._2._2.hasDebt
 }.count
 </code></pre>
+
 <ul>
 <li>Case2: filter first</li>
 </ul>
-<pre><code class="language-scala">val filtered
+<pre><code class="scala">val filtered
   = finances.filter(p =&gt; p._2.hasFinancialDependents &amp;&amp; p._2.hasDebt)
 
   demographics.filter(p =&gt; p._2.country == &quot;Switzerland&quot;)
   .join(filtered)
   .count
 </code></pre>
+
 <ul>
 <li>Case3: Cartesian Product</li>
 </ul>
-<pre><code class="language-scala">val cartesian = demographics.cartesian(finances)
+<pre><code class="scala">val cartesian = demographics.cartesian(finances)
 
 cartesian.filter {
   case (pl, p2) =&gt; p1._1 == p2._l
@@ -916,6 +967,7 @@ cartesian.filter {
   (p2._2.hasDebt)
 }.count
 </code></pre>
+
 <p>실행 시간은 어떻게 될까?
 150,000 people에 대해서 계산을 했을 때 1번은 4.97초 2번은 1.35초가 걸렸다. 반면 3번은 약 4분이 걸렸다.
 그만큼 Cartesian Product는 성능이 좋지 않다.
@@ -927,18 +979,22 @@ cartesian.filter {
 하지만 DB와 같이 structured data의 경우에는 Spark가 데이터 구조를 알 수 있고 예측할 수 있기에 aggressive optimization이 가능하다.
 =&gt; <code>Spark SQL</code>이 이를 가능하게 해준다.!</p>
 <h3 id="spark-sql">Spark SQL</h3>
-<p>Spark SQL의 goal은
-1. Spark programs(on RDD)와 external data source with a friendly API 간의 relational processing을 지원하는 것이다.
-2. database를 research하는데 high performance를 발휘한다.
-3. semi-structured data와 external databases를 easily support 한다.</p>
-<p>Spark SQL은 Spark의 라이브러리 중 하나로써 3개의 main API가 있다.
-- SQL literal syntax
-- DataFrames
-- Datasets</p>
+<p>Spark SQL의 goal은</p>
+<ol>
+<li>Spark programs(on RDD)와 external data source with a friendly API 간의 relational processing을 지원하는 것이다.</li>
+<li>database를 research하는데 high performance를 발휘한다.</li>
+<li>semi-structured data와 external databases를 easily support 한다.</li>
+</ol>
+<p>Spark SQL은 Spark의 라이브러리 중 하나로써 3개의 main API가 있다.</p>
+<ul>
+<li>SQL literal syntax</li>
+<li>DataFrames</li>
+<li>Datasets</li>
+</ul>
 <p>또한 2개의 특별한 backend component가 있다.
 - Catalyst, query optimizer
 - Tungsten, off-heap serializer</p>
-<p><img alt="" src="spark%20sql%20stack.png" /></p>
+<p><img alt="" src="../spark%20sql%20stack.png" /></p>
 <h4 id="relational-queriessql">Relational Queries(SQL)</h4>
 <p>Everything about SQL is structured.
 In fact, SQL stands for structural query language.</p>
@@ -960,7 +1016,7 @@ DataFrames contain Rows which can contain any schema.</p>
 <p>Transformations on DataFrames are also known as untyped transformations</p>
 <h4 id="sparksession">SparkSession</h4>
 <p>To get started using Spark SQL, everything starts with the SparkSession</p>
-<pre><code class="language-scala">import org.apache.spark.sql.SparkSession
+<pre><code class="scala">import org.apache.spark.sql.SparkSession
 
 val spark = SparkSession
   .builder()
@@ -968,6 +1024,7 @@ val spark = SparkSession
   //.config(&quot;spark.some.config.option&quot;, &quot;some-value&quot;)
   .getOrCreate()
 </code></pre>
+
 <h4 id="creating-dataframes">Creating DataFrames</h4>
 <p>DataFrames can be created in two ways:</p>
 <ol>
@@ -977,21 +1034,24 @@ Either with schema inference, or with an explicit schema.</li>
 Common structured or semi-structured formats such as JSON.</li>
 </ol>
 <h5 id="1a-create-dataframe-from-rdd-schema-reflectively-inferred">(1a) Create DataFrame from RDD, schema reflectively inferred</h5>
-<pre><code class="language-scala">val tupleRDD = ...// Assume RDD[(Int, String String, String)]
+<pre><code class="scala">val tupleRDD = ...// Assume RDD[(Int, String String, String)]
 val tupleDF = tupleRDD.toDF(&quot;id&quot;, &quot;name&quot;, &quot;city&quot;, &quot;country&quot;) // column names
 </code></pre>
+
 <p>Note: ifyou use toDF without arguments, Spark will assign numbers as attributes (column names) to your DataFrame.</p>
 <p>If you already have an RDD containing some kind of case class instance, then Spark can infer the attributes from the case class's fields.</p>
-<pre><code class="language-scala">case class Person(id: Int, name: String, city: String)
+<pre><code class="scala">case class Person(id: Int, name: String, city: String)
 val peopleRDD =...// Assume RDD[Person]
 val peopleDF = peopleRDD.toDF
 </code></pre>
+
 <h5 id="1b-create-dataframe-from-existing-rdd-schema-explicitly-specified">(1b) Create DataFrame from existing RDD, schema explicitly specified</h5>
-<pre><code class="language-scala">case class Person(name: String, age: Int)
+<pre><code class="scala">case class Person(name: String, age: Int)
 val peopleRdd = sc.textFile(...) // Assume RDD[Person]
 </code></pre>
+
 <p>위의 코드를 manually build up a schema, dataFrame을 만드는 방법은 아래와 같이 할 수 있다.</p>
-<pre><code class="language-scala">// The schema is encoded in a string
+<pre><code class="scala">// The schema is encoded in a string
 val schemastring = &quot;name age&quot;
 
 // Generate the schema based on the string of schema
@@ -1007,22 +1067,26 @@ val rowRDD = peopleRDD
 // Apply the schema to the RDD
 val peopleDF = spark.createDataFname(rowRDD, schema)
 </code></pre>
+
 <h5 id="2-create-dataframe-by-reading-in-a-data-source-from-file">(2) Create DataFrame by reading in a data source from file.</h5>
 <p>Using the SparkSession object, you can read in semi-structured/structured data by using the read method.
 For example, to read in data and infer a schema from a JSON file:</p>
-<pre><code class="language-scala">// 'spark' is the SparkSession object we created a few slides back
+<pre><code class="scala">// 'spark' is the SparkSession object we created a few slides back
 val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)
 </code></pre>
-<p>Semi-structured/Structured data sources Spark SQL can directly create DataFrames from:
-- JSON
-- CSV
-- Parquet
-- JDBC</p>
+
+<p>Semi-structured/Structured data sources Spark SQL can directly create DataFrames from:</p>
+<ul>
+<li>JSON</li>
+<li>CSV</li>
+<li>Parquet</li>
+<li>JDBC</li>
+</ul>
 <p>To see a list of all available methods for directly reading in semi-structured/structured data, see the latest API docs for DataFrameReader: http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrameReader</p>
 <h4 id="sql-literals">SQL Literals</h4>
 <p>DataFrame이 만들어 졌으면 이제 dataset에 SQL syntax를 사용할 수 있다.</p>
 <p>A DataFrame called peopleDF, we just have to register our DataFrame as a temporary SQL view first:</p>
-<pre><code class="language-scala">// Register the DataFrame as a SQL temporary view
+<pre><code class="scala">// Register the DataFrame as a SQL temporary view
 peopleDF.createOrReplaceTempView(&quot;people&quot;)
 // This essentially gives a name to our DataFrame in SQL
 // so we can refer to it in an SQL FROM statement
@@ -1031,6 +1095,7 @@ peopleDF.createOrReplaceTempView(&quot;people&quot;)
 // SQL literals can be passed to Spark SQL's sql method
 val adultsDF = spark.sql(&quot;SELECT * FROM people WHERE age &gt; 17&quot;)
 </code></pre>
+
 <p>The SQL statements available to you are largely what's available in HiveQL. This includes standard SQL statements such as:</p>
 <ul>
 <li>SELECT</li>
@@ -1053,7 +1118,7 @@ https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/</p>
 <p>For an updated list of supported Hive features in Spark SQL, the official Spark SQL docs enumerate:
 https://spark.apache.org/docs/latest/sql-programming-guide.html#supported-hive-features</p>
 <p>더욱 흥미로운 예제를 한번 살펴 보자</p>
-<pre><code class="language-scala">case class Employee(id: Int, fname: String, Iname: String, age: Int, city: String)
+<pre><code class="scala">case class Employee(id: Int, fname: String, Iname: String, age: Int, city: String)
 
 // DataFrame with schema defined in Employee case class
 val employeeDF = sc.parallelize(...).toDF
@@ -1063,6 +1128,7 @@ val sydneyEmployeesDF = spark.sql(&quot;&quot;&quot;SELECT id, lname
   WHERE city = &quot;Sydney&quot;
   ORDER BY id&quot;&quot;&quot;)
 </code></pre>
+
 <h3 id="dataframes">DataFrames</h3>
 <ol>
 <li>Spark's RDDs와 관련된 API를 제공한다</li>
@@ -1071,7 +1137,7 @@ val sydneyEmployeesDF = spark.sql(&quot;&quot;&quot;SELECT id, lname
   = scala compiler가 type check를 하지 않는다.</li>
 </ol>
 <p><code>show()</code> pretty-prints DataFrame in tabular form. Shows first 20 elements.</p>
-<pre><code class="language-scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
 val employeeDF = sc.parallelize(...).toDF
 employeeDF.show( )
 //+---+-----+-------+---+--------+
@@ -1083,8 +1149,9 @@ employeeDF.show( )
 // |221|David| Walker| 21|  Sydney|
 // +---+-----+-------+---+--------+
 </code></pre>
+
 <p><code>printSchema()</code> prints the schema of your DataFrame in a tree format.</p>
-<pre><code class="language-scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
 val employeeDF = sc.parallelize(...).toDF
 employeeDF.printschema( )
 
@@ -1095,7 +1162,8 @@ employeeDF.printschema( )
 // |-- age: integer (nullable = true)
 // |-- city: string (nullable = true)
 </code></pre>
-<pre><code class="language-scala">def select(col: String, cols: String*): DataFrame
+
+<pre><code class="scala">def select(col: String, cols: String*): DataFrame
 // selects a set of named columns and returns a new DataFrame with these
 // columns as a result.
 
@@ -1109,16 +1177,19 @@ def groupBy(col1: String, cols: String*): DataFrame // simplified
 def join(right: DataFrame): DataFrame // simplified
 // inner join with another DataFrame
 </code></pre>
+
 <p>Other transformations include: filter, limit, orderBy, where, as, sort, union, drop, amongst others.</p>
-<p>You can select and work with columns in three ways:
-1. Using $-notation
+<p>You can select and work with columns in three ways:</p>
+<ol>
+<li>Using $-notation
   // $-notation requires: import spark.implicits._
-  <code>df.filter($"age" &gt; 18)</code>
-2. Referring to the Dataframe
-  <code>df.filter(df("age")&gt; 18))</code>
-3. Using SQL query string
-  <code>df.filter("age &gt; 18")</code></p>
-<pre><code class="language-scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
+  <code>df.filter($"age" &gt; 18)</code></li>
+<li>Referring to the Dataframe
+  <code>df.filter(df("age")&gt; 18))</code></li>
+<li>Using SQL query string
+  <code>df.filter("age &gt; 18")</code></li>
+</ol>
+<pre><code class="scala">case class Employee(id: Int, fname: String, lname: String, age: Int, city: String)
 
 val employeeDF = sc.parallelize(...).toDF
 val sydneyEmployeesDF = employeeDF.select(&quot;id&quot;, &quot;lname&quot;)
@@ -1132,22 +1203,26 @@ val sydneyEmployeesDF = employeeDF.select(&quot;id&quot;, &quot;lname&quot;)
 // |645|Markham|
 // +---+-------+
 </code></pre>
+
 <p>아래 두 코드의 결과는 동일하다.</p>
-<pre><code class="language-scala">val over30 = employeeDF.filter(&quot;age &gt; 30&quot;).show()
+<pre><code class="scala">val over30 = employeeDF.filter(&quot;age &gt; 30&quot;).show()
 
 val over30 = employeeDF.where(&quot;age &gt; 30&quot;).show()
 </code></pre>
-<pre><code class="language-scala">employeeDF.filter(($&quot;age&quot; &gt; 25) &amp;&amp; ($&quot;city&quot; === &quot;Sydney&quot;)).show()
+
+<pre><code class="scala">employeeDF.filter(($&quot;age&quot; &gt; 25) &amp;&amp; ($&quot;city&quot; === &quot;Sydney&quot;)).show()
 </code></pre>
+
 <p>groupBy function은 <code>RelationalGroupedDataset</code>을 리턴한다.
 이는 count, sum, max, min, avg 같은 함수들을 포함한다.</p>
-<pre><code class="language-scala">df.groupBy($&quot;attribute1&quot;)
+<pre><code class="scala">df.groupBy($&quot;attribute1&quot;)
   .agg(sum($&quot;attribute2&quot;))
 
 df.groupBy($&quot;attribute1&quot;)
   .count($&quot;attribute2&quot;)
 </code></pre>
-<pre><code class="language-scala">case class Listing(street: String, zip: Int, price: Int)
+
+<pre><code class="scala">case class Listing(street: String, zip: Int, price: Int)
 
 val listingsDF = . . . // DataFrame of Listings
 
@@ -1158,7 +1233,8 @@ val mostExpensiveDF = listingsDF.groupBy($&quot;zip&quot;)
 val leastExpensiveDF = listingsDF.groupBy($&quot;zip&quot;)
   .min( &quot;price&quot;)
 </code></pre>
-<pre><code class="language-scala">case class Post( authorID: Int, subforum: String, likes: Int, date: String)
+
+<pre><code class="scala">case class Post( authorID: Int, subforum: String, likes: Int, date: String)
 
 val postsDF = ... // DataFrame of Posts
 
@@ -1192,16 +1268,19 @@ val rankedDF = postsDF.groupBy($&quot;authorID&quot;, $&quot;subforum&quot;)
 // |       2|  design|              1|
 // +--------+--------+---------------+
 </code></pre>
+
 <p>Sometimes you may have a data set with null or NaN values.
 In these cases it's often desirable to do one of the following:</p>
 <ul>
 <li>drop rows/records with unwanted values like null or "NaN"</li>
 <li>replace certain values with a constant</li>
 </ul>
-<p>Dropping records with unwanted values:
-- drop() drops rows that contain null or NaN values in any column and returns a new DataFrame.
-- drop("all") drops rows that contain null or NaN values in all columns and returns a new DataFrame.
-- drop(Array("id", "name")) drops rows that contain null or NaN values in the specified columns and returns a new DataFrame.</p>
+<p>Dropping records with unwanted values:</p>
+<ul>
+<li>drop() drops rows that contain null or NaN values in any column and returns a new DataFrame.</li>
+<li>drop("all") drops rows that contain null or NaN values in all columns and returns a new DataFrame.</li>
+<li>drop(Array("id", "name")) drops rows that contain null or NaN values in the specified columns and returns a new DataFrame.</li>
+</ul>
 <p>Replacing unwanted values:
 - <code>fill(0)</code> replaces all occurrences of null or NaN in numeric columns with specified value and returns a new DataFrame.
 - <code>fill(Map("minBalance" -&gt; 0))</code> replaces all occurrences of null or NaN in specified column with specified value and returns a new DataFrame.
@@ -1227,7 +1306,7 @@ Given two DataFrames, df1 and df2 each with a column/attribute called id, we can
   <code>df1.join(df2, $"df1.id" === $"df2.id")</code></p>
 <p>It’s possible to change the join type by passing an additional string parameter to join specifying which type of join to perform. E.g.,
   <code>df1.join(df2, $"df1.id" $"df2.id", "right_outer")</code></p>
-<pre><code class="language-scala">case class Abo(id: Int, v: (String, String))
+<pre><code class="scala">case class Abo(id: Int, v: (String, String))
 case class Loc(id: Int, v: String)
 
 val as = List(Abo(101, (&quot;Ruetli&quot;, &quot;AG&quot;)), Abo(102, (&quot;Brelaz&quot;, &quot;DemiTarif&quot;)),
@@ -1237,7 +1316,8 @@ val abosDF = sc.parallelize(as).toDF
 val ls = List(Loc(101, &quot;Bern&quot;), Loc(101, &quot;Thun&quot;), Loc(102, &quot;Lausanne&quot;), Loc(102, &quot;Geneve&quot;), Loc(102, &quot;Nyon&quot;), Loc(103, &quot;Zurich&quot;), Loc(103, &quot;St-Gallen&quot;), Loc(103, &quot;Chur&quot;))
 val locationsDF = sc.parallelize(ls).toDF
 </code></pre>
-<pre><code class="language-scala">// abosDF:
+
+<pre><code class="scala">// abosDF:
 // +-—+----------------------+
 // |id|                     v|
 // +-—+----------------------+
@@ -1260,7 +1340,8 @@ val locationsDF = sc.parallelize(ls).toDF
 // |103|     Chur|
 // +---+---------+
 </code></pre>
-<pre><code class="language-scala">val abosDF = sc.parallelize(as).toDF
+
+<pre><code class="scala">val abosDF = sc.parallelize(as).toDF
 val locationsDF = sc.parallelize(ls).toDF
 
 val trackedCustomersDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === locationsDF(&quot;id&quot;))
@@ -1279,7 +1360,8 @@ val trackedCustomersDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === loc
 // |102|  [Brelaz,DemiTarif]|102|     Nyon|
 // +---+----------------------+---+---------+
 </code></pre>
-<pre><code class="language-scala">val abosWithOptionalLocationsDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === locationsDF(&quot;id&quot;), &quot;left_outer&quot;)
+
+<pre><code class="scala">val abosWithOptionalLocationsDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === locationsDF(&quot;id&quot;), &quot;left_outer&quot;)
 
 // abosWithOptionalLocationsDF:
 // +---+--------------------+----+---------+
@@ -1296,8 +1378,9 @@ val trackedCustomersDF = abosDF.join(locationsDF, abosDF(&quot;id&quot;) === loc
 // |104|[Schatten,DemiTarif]|null|     Nyon|
 // +---+----------------------+---+---------+
 </code></pre>
+
 <p>As expected, customer 104 has returned! :-)</p>
-<pre><code class="language-scala">case class Demographic(id: Int,
+<pre><code class="scala">case class Demographic(id: Int,
   age: Int,
   codingBootcamp: Boolean,
   country: String,
@@ -1318,6 +1401,7 @@ demographicsDF.join(financesDF, demographicsDF(&quot;ID&quot;) === financesDF(&q
   .filter($&quot;CountryLive&quot; === &quot;Switzerland&quot;)
   .count
 </code></pre>
+
 <p>위의 join과 filter가 붙은 코드를 보면 만약 df가 아닌 일반 데이터였을 경우 join을 먼저 하냐 filter를 먼저 하냐에 따라 성능차이가 크게 달라진다.
 하지만 df에서는 자동적으로 optimization해주기 때문에 이에 대해 걱정할 필요가 없다.</p>
 <p>How is this possible?
@@ -1342,7 +1426,7 @@ E.g., you have an application which already uses some kind of complicated regula
 만약 your unstructured data가 schema를 가진 형태로 reformulated될 수 없다면 RDDs를 사용하는 것이 더 좋다.</p>
 </li>
 </ol>
-<pre><code class="language-scala">case class Listing(street: String, zip: Int, price: Int)
+<pre><code class="scala">case class Listing(street: String, zip: Int, price: Int)
 val listingsDF = ... // DataFrame of Listings
 
 import org.apache.spark.sql.functions._
@@ -1360,18 +1444,21 @@ val averagePricesAgain = averagePrices.map {
 }
 // mostExpensiveAgain: Array[(Int, Double)]
 </code></pre>
+
 <p>DataFrames are actually Datasets.</p>
-<pre><code class="language-scala">type DataFrame = DataSet[Row]
+<pre><code class="scala">type DataFrame = DataSet[Row]
 </code></pre>
+
 <ul>
 <li>Datasets can be thought of as typed distributed collections of data.</li>
 <li>Dataset API unifies the DataFrame and RDD APIs. Mix and match!</li>
 <li>Datasets require strucutred/semi-structured data. Schemas and Encoders core part of Datasets.</li>
 </ul>
-<pre><code class="language-scala">// We can freely mix APls!
+<pre><code class="scala">// We can freely mix APls!
 listingsDS.groupByKey(l =&gt; l.zip) // looks like groupByKey on RDDs!
   .agg(avg($&quot;price&quot;).as[Double]) // looks like our DataFrame operators!
 </code></pre>
+
 <h3 id="datasets">Datasets</h3>
 <p>Datasets are a something in the middle between DataFrames and RDDs
 - You can still use relational DataFrame operations as we learned in previous sessions on Datasets.
@@ -1406,12 +1493,15 @@ The Dataset API includes both untyped and typed transformations.</p>
 <li><strong>untyped transformations</strong> the transformations we learned on DataFrames.</li>
 <li><strong>typed transformations</strong> typed variants of many DataFrame transformations + additional transformations such as RDD-like higher-order functions map, flatMap, etc.</li>
 </ul>
-<p>These APls are integrated. You can call a map on a DataFrame and get back a Dataset, for example.
-- Caveat: not every operation you know from RDDs are available on Datasets, and not all operations look 100% the same on Datasets as they did on RDDs.</p>
+<p>These APls are integrated. You can call a map on a DataFrame and get back a Dataset, for example.</p>
+<ul>
+<li>Caveat: not every operation you know from RDDs are available on Datasets, and not all operations look 100% the same on Datasets as they did on RDDs.</li>
+</ul>
 <p>But remember, you may have to explicitly provide type information when going from a DataFrame to a Dataset via typed transformations.</p>
-<pre><code class="language-scala">val keyValuesDF = List((3, &quot;Me&quot;), (1, &quot;Thi&quot;), (2, &quot;Se&quot;), (3, &quot;ssa&quot;) (3, &quot;-&quot;)), (2, &quot;cre&quot;) (2, &quot;t&quot;)).toDF
+<pre><code class="scala">val keyValuesDF = List((3, &quot;Me&quot;), (1, &quot;Thi&quot;), (2, &quot;Se&quot;), (3, &quot;ssa&quot;) (3, &quot;-&quot;)), (2, &quot;cre&quot;) (2, &quot;t&quot;)).toDF
 val res = keyValuesDF.map(row =&gt; row(0).asinstanceOf[Int] + 1) // Ew...
 </code></pre>
+
 <h4 id="common-typed-transformation-on-datasets">Common (Typed) Transformation on Datasets</h4>
 <ul>
 <li>map        map<a href="f: T =&gt; U">U</a>: Dataset[U]</li>
@@ -1440,9 +1530,10 @@ val res = keyValuesDF.map(row =&gt; row(0).asinstanceOf[Int] + 1) // Ew...
 <li>agg           agg<a href="col: TypedColumn[V, U]">U</a>: Dataset[(K, U)]
   Computes the given aggregation, returning a Dataset of tuples for each unique key and the result of computing this aggregation over all elements in the group.</li>
 </ul>
-<pre><code class="language-scala">someDS.agg(avg($&quot;column&quot;)) // error! untyped regular Column을 TypedColumn으로 변경해줘야 한다.
+<pre><code class="scala">someDS.agg(avg($&quot;column&quot;)) // error! untyped regular Column을 TypedColumn으로 변경해줘야 한다.
 someDS.agg(avg($&quot;column&quot;).as[Double])
 </code></pre>
+
 <ul>
 <li>mapGroups      mapGroups<a href="f: (K, Iterator[V]) = &gt; U">U</a>: Dataset[U]
   Applies the given function to each group of data. For each unique group, the function will be passed the group key and an iterator that contains all of the elements in the group. The function can return an element of arbitrary type which wi11 be returned as a new Dataset.</li>
@@ -1450,7 +1541,7 @@ someDS.agg(avg($&quot;column&quot;).as[Double])
   Applies the given function to each group of data. For each unique group, the function will be passed the group key and an iterator that contains all of the elements in the group. The function can return an iterator containing elements of an arbitrary type which will be returned as a new Dataset.</li>
 </ul>
 <p>Dataset API를 살펴보면 RDD에는 있지만 여기엔 reduceByKey가 없는 것을 알 수 있다.</p>
-<pre><code class="language-scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
+<pre><code class="scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
 
 val keyValuesDS = keyValues.toDS
 
@@ -1465,10 +1556,12 @@ keyValuesDS.groupByKey(p =&gt; p._1)
 // |  2|    Secret|
 // +---+----------+
 </code></pre>
-<pre><code class="language-scala">keyValuesDS.groupByKey(p =&gt; p._1)
+
+<pre><code class="scala">keyValuesDS.groupByKey(p =&gt; p._1)
   .mapValues(p =&gt; p._2)
   .reduceGroups((acc, str) =&gt; ace + str)
 </code></pre>
+
 <h4 id="aggregators">Aggregators</h4>
 <p>A class that helps you generically aggregate data. Kind of like the aggregate method we saw on RDDs.</p>
 <blockquote>
@@ -1480,7 +1573,7 @@ keyValuesDS.groupByKey(p =&gt; p._1)
 <li>OUT is the type of the output of the aggregation .</li>
 </ul>
 <p>This is how implement our own Aggregator:</p>
-<pre><code class="language-scala">val myAgg = new Aggregator[IN, BUF, OUT] {
+<pre><code class="scala">val myAgg = new Aggregator[IN, BUF, OUT] {
   def zero: BUF = ...                       // The initial value.
   def reduce(b: BUF, a: IN): BUF = ...     // Add an element to the running total
   def merge(b1 : BUF, b2: BUF): BUF = ... // Merge intermediate values.
@@ -1488,7 +1581,8 @@ keyValuesDS.groupByKey(p =&gt; p._1)
 }.toColumn
 
 </code></pre>
-<pre><code class="language-scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
+
+<pre><code class="scala">val keyValues = List((3,&quot;Me&quot;),(1 ,&quot;Thi&quot;),(2,&quot;Se&quot;),(3,&quot;ssa&quot;),(1 ,&quot;sisA&quot;),(3,&quot;ge:&quot;),(3,&quot;-)&quot;),(2,&quot;ere&quot;),(2,&quot;t&quot;))
 
 val keyValuesDS = keyValues.toDS
 
@@ -1513,6 +1607,7 @@ keyValuesDS.groupByKey(pair =&gt; pair._1)
 // |     2|              Secret|
 // +------+--------------------+
 </code></pre>
+
 <h4 id="encoders">Encoders</h4>
 <p>Encoders are what convert your data between JVM objects and Spark SQL's specialized internal (tabular) representation.
 They're required by all Datasets!</p>
@@ -1540,18 +1635,24 @@ They're required by all Datasets!</p>
 <li>Requires Semi-Structured/Structured Data</li>
 </ul>
 <h3 id="when-to-use-datasets-vs-dataframes-vs-rdds">When to use Datasets vs DataFrames vs RDDs?</h3>
-<p>Use Datasets when...
-- you have structured / semi-structured data
-- you want typesafety
-- you need to work with functional APls
-- you need good performance, but it doesn't have to be the best</p>
-<p>Use DataFrames when...
-- you have structured / semi-structured data
-- you want the best possible performance, automatically optimized for you</p>
-<p>Use RDDs when...
-- you have unstructured data
-- you need to fine-tune and manage low-level details of ROD computations
-- you have complex data types that cannot be serialized with Encoders</p>
+<p>Use Datasets when...</p>
+<ul>
+<li>you have structured / semi-structured data</li>
+<li>you want typesafety</li>
+<li>you need to work with functional APls</li>
+<li>you need good performance, but it doesn't have to be the best</li>
+</ul>
+<p>Use DataFrames when...</p>
+<ul>
+<li>you have structured / semi-structured data</li>
+<li>you want the best possible performance, automatically optimized for you</li>
+</ul>
+<p>Use RDDs when...</p>
+<ul>
+<li>you have unstructured data</li>
+<li>you need to fine-tune and manage low-level details of ROD computations</li>
+<li>you have complex data types that cannot be serialized with Encoders</li>
+</ul>
               
             </div>
           </div>
@@ -1559,10 +1660,10 @@ They're required by all Datasets!</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="my-scala.html" class="btn btn-neutral float-right" title="My Scala">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../my-scala/" class="btn btn-neutral float-right" title="My Scala">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="parallel-programming.html" class="btn btn-neutral" title="Coursera/parallel-programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../parallel-programming/" class="btn btn-neutral" title="Coursera/parallel-programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -1585,20 +1686,19 @@ They're required by all Datasets!</p>
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="parallel-programming.html" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="my-scala.html" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../parallel-programming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../my-scala/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
